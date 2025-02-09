@@ -1,3 +1,10 @@
+![foto perfil](/img/62078926.jpeg)
+
+# Autor:
+Rúben João Mendes Oliveira(a93625)
+
+
+
 # TPC1 - Leitor de digitos de um texto
 
 Este trabalho consiste no num algoritimo que lê de stdin um texto e faz um somatorio dos digito em caso no texto apareça ON e OFF não lê os digitos até esse ponto
