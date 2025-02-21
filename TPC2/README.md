@@ -13,7 +13,7 @@ Esta função recebe o dicionário, faz sort de enumerador por compositor.
 
 ### Resultado
 
-![exercio1!](/img/Captura de ecrã de 2025-02-20 12-01-19.png "exercico 1")
+![exercio1!](img/Captura de ecrã de 2025-02-20 12-01-19.png "exercico 1")
 
 
 ## 2. Distribuição das obras por período: quantas obras catalogadas em cada período
@@ -22,7 +22,7 @@ Já esta função faz um counter, que conta quantos obras existem por periodo.
 
 ### Resultado
 
-![exercio2!](/img/Captura de ecrã de 2025-02-20 12-01-55.png "exercico 2")
+![exercio2!](img/Captura de ecrã de 2025-02-20 12-01-55.png "exercico 2")
 
 
 ## 3.  Dicionário em que a cada período está a associada uma lista alfabética dos títulos das obras desse período
@@ -33,4 +33,4 @@ Por ultimo faz o sort das obras por periodo.
 
 ### Resultado
 
-![exercio3!](/img/Captura de ecrã de 2025-02-20 12-07-49.png "exercico 3")
+![exercio3!](img/Captura de ecrã de 2025-02-20 12-07-49.png "exercico 3")
