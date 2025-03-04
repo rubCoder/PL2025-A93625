@@ -16,6 +16,6 @@ Aqui temos uma lista com padrões de expressões regulares(regex) para reconhece
 
 ![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc-03.png)
 
-![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc-dados de introdução.png)
+![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc-dadosintroducao.png)
 
 ![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc-resultado.png)
