@@ -15,11 +15,18 @@ Aqui vemos a estrutura do ficheiro que vai ser lido pelo o programa, em é const
 
 ![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc5_011.png)
 
+A função ler o ficheiro, como o nome implica le o ficheiro JSON que tem o stock da máquina, mete num dicionário
+
 ## 3 - Listar Produtos
 
 ![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc5_012.png)
 
+Na função de 
+
+
 ## 4 - Inserir Moeda
+![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc5_013.png)
+
 
 ## 5 - Selecionar o Produto
 
@@ -37,6 +44,9 @@ Aqui vemos a estrutura do ficheiro que vai ser lido pelo o programa, em é const
 
 ## 1 - Listar os dados
 
+## 2 - Inserir Moeda
 
-## Inserir Moeda
+## 3 - Selecionar o Produto
+
+## 4 - Calcula o Troco 
 
