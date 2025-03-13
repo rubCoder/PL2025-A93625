@@ -1,20 +1,20 @@
 [
-      {
+    {
         "cod": "A23",
         "nome": "Agua0.5L",
         "quant": 8,
         "preco": 0.5
-      },
-      {
+    },
+    {
         "cod": "C23",
         "nome": "Coca Cola0.5L",
         "quant": 8,
         "preco": 0.7
-      },
-      {
+    },
+    {
         "cod": "S23",
         "nome": "Sumol0.5L",
         "quant": 8,
         "preco": 0.7
-      }
+    }
 ]
