@@ -7,4 +7,6 @@ O objectivo deste tpc é criar uma vending machine que ao ler um ficheiro JSON, 
 
 ![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc5_014.png)
 
-Aqui vemos a estrutura do ficheiro que vai ser lido pelo o programa, em é constituido pelo três campos...
+Aqui vemos a estrutura do ficheiro que vai ser lido pelo o programa, em é constituido pelo quatro campos, codigo, nome, quantidade e preço.
+
+
