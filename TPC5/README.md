@@ -10,3 +10,27 @@ O objectivo deste tpc é criar uma vending machine que ao ler um ficheiro JSON, 
 Aqui vemos a estrutura do ficheiro que vai ser lido pelo o programa, em é constituido pelo quatro campos, codigo, nome, quantidade e preço.
 
 
+## 2 - Leitura do Ficheiro JSON
+
+![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc5_011.png)
+
+## 3 - Listar Produtos
+
+![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc5_012.png)
+
+## 4 - Inserir Moeda
+
+## 5 - Selecionar o Produto
+
+![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc5_015.png)
+
+
+## 6 - Calcula o Troco
+
+![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc5_016.png)
+
+## 7 - Menu
+![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc5_017.png)
+
+
+
