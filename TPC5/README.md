@@ -50,12 +50,12 @@ No menu o stock é carregado automáticamente e depois só tem de introduzir a o
 
 ## 1 - Listar os dados
 
-![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc5_018.png)
+![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc5_18.png)
 
 ## 2 - Inserir Moeda
 
-![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc5_019.png)
+![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc5_19.png)
 
 ## 3 - Selecionar o Produto
 
-![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc5_020.png)
+![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc5_20.png)
