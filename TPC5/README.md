@@ -2,6 +2,7 @@
 
 O objectivo deste tpc é criar uma vending machine que ao ler um ficheiro JSON, com um triplo de dados, são manipulados pelo o programa e depois gravados, no fim do processo
 
+# Código
 
 ## 1-Ficheiro JSON
 
@@ -32,5 +33,10 @@ Aqui vemos a estrutura do ficheiro que vai ser lido pelo o programa, em é const
 ## 7 - Menu
 ![LISTA DE TOKENS UTILIZADA](https://github.com/rubCoder/PL2025-A93625/blob/main/img/tpc5_017.png)
 
+# Resultados
 
+## 1 - Listar os dados
+
+
+## Inserir Moeda
 
