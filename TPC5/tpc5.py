@@ -18,14 +18,18 @@ def guardar_stock(stock):
         json.dump(stock, f, indent=4)
 
 def inserir_moedas():
-    saldo = 0
-    moedas = input(">> MOEDA ").split(",")
-    valores = {"1e": 1.0, "50c": 0.5, "20c": 0.2, "10c": 0.1, "5c": 0.05, "2c": 0.02, "1c": 0.01}
-    for moeda in moedas:
-        moeda = moeda.strip()
+    saldo = 0  
+    valores = {"1e": 1.0, "50c": 0.5, "20c": 0.2, "10c": 0.1, "5c": 0.05, "2c": 0.02, "1c": 0.01} 
+    
+    entrada = input(">> MOEDA ").lower().replace(" ", "").split(",")  
+    for moeda in entrada:
         if moeda in valores:
             saldo += valores[moeda]
-    return saldo
+        else:
+            print(f"maq: Moeda inválida ({moeda}), ignorada.")
+
+    print(f"maq: Saldo atualizado = {saldo:.2f}€")
+    return saldo  
 
 def calcular_troco(saldo):
     valores = [(1.0, "1e"), (0.5, "50c"), (0.2, "20c"), (0.1, "10c"), (0.05, "5c"), (0.02, "2c"), (0.01, "1c")]
@@ -62,7 +66,7 @@ def main():
     print("maq: Stock carregado, Estado atualizado.")
     print("maq: Bom dia. Estou disponível para atender o seu pedido.")
     
-    listar_produtos(stock)
+    #listar_produtos(stock)
     
     saldo = 0
     
