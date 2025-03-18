@@ -50,9 +50,9 @@ Temos um ciclo quase infinito que só acaba quando o utilizador escrever "sair",
 
 O fluxo da Main:
 1. O utilizador introduz a expressão
-2. tokenize(): transforma em tokens.
-3. Parser() → configura o parser.
-4. parse_expr() → chama outras funções recursivamente.
+2. tokenize() : transforma em tokens.
+3. Parser() : configura o parser.
+4. parse_expr() : chama outras funções recursivamente.
 5. Calcula resultado e imprime.
 
 
