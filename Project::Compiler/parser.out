@@ -1,0 +1,4403 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    COMMENT
+    NL
+    REPEAT
+    RETURN
+    SET
+    TYPE
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> PROGRAM ID PONTO_VIRGULA var_declaration_part BEGIN body END PONTO
+Rule 2     var_declaration_part -> VAR var_declaration_list
+Rule 3     var_declaration_part -> empty
+Rule 4     var_declaration_list -> var_declaration
+Rule 5     var_declaration_list -> var_declaration_list var_declaration
+Rule 6     var_declaration_list -> var_declaration_list PONTO_VIRGULA var_declaration
+Rule 7     var_declaration -> id_list DOISPONTOS type PONTO_VIRGULA
+Rule 8     id_list -> ID
+Rule 9     id_list -> id_list VIRGULA ID
+Rule 10    body -> statements
+Rule 11    statements -> statements statement
+Rule 12    statements -> statement
+Rule 13    statement -> assign
+Rule 14    statement -> writeln
+Rule 15    statement -> write
+Rule 16    statement -> readln
+Rule 17    statement -> read
+Rule 18    statement -> if
+Rule 19    statement -> case
+Rule 20    statement -> while
+Rule 21    statement -> for
+Rule 22    statement -> function
+Rule 23    statement -> procedure
+Rule 24    statement -> func_call
+Rule 25    writeln -> WRITELN ( Args ) PONTO_VIRGULA
+Rule 26    write -> WRITE ( Args ) PONTO_VIRGULA
+Rule 27    readln -> READLN ( Args ) PONTO_VIRGULA
+Rule 28    read -> READ ( Args ) PONTO_VIRGULA
+Rule 29    Args -> Args VIRGULA Arg
+Rule 30    Args -> Arg
+Rule 31    Arg -> const
+Rule 32    Arg -> var
+Rule 33    assign -> var ASSIGN expression PONTO_VIRGULA
+Rule 34    if -> IF expression THEN statement
+Rule 35    if -> IF expression THEN statement ELSE statement
+Rule 36    if -> IF expression THEN compound_statement
+Rule 37    if -> IF expression THEN compound_statement ELSE compound_statement
+Rule 38    case -> CASE expression OF case_branches END PONTO_VIRGULA
+Rule 39    case -> CASE expression OF case_branches ELSE statements END PONTO_VIRGULA
+Rule 40    case_branches -> case_branches case_branch
+Rule 41    case_branches -> case_branch
+Rule 42    case_branch -> case_labels DOISPONTOS statement
+Rule 43    case_labels -> case_labels VIRGULA const
+Rule 44    case_labels -> const
+Rule 45    expression -> expression OR and_expr
+Rule 46    expression -> and_expr
+Rule 47    and_expr -> and_expr AND not_expr
+Rule 48    and_expr -> not_expr
+Rule 49    not_expr -> NOT not_expr
+Rule 50    not_expr -> rel_expr
+Rule 51    rel_expr -> arith_expr rel_op arith_expr
+Rule 52    rel_expr -> arith_expr
+Rule 53    rel_op -> IGUAL
+Rule 54    rel_op -> DIFF
+Rule 55    rel_op -> MAIOR
+Rule 56    rel_op -> MENOR
+Rule 57    rel_op -> MENOR_IGUAL
+Rule 58    rel_op -> MAIOR_IGUAL
+Rule 59    arith_expr -> arith_expr add_op term
+Rule 60    arith_expr -> term
+Rule 61    add_op -> MAIS
+Rule 62    add_op -> MENOS
+Rule 63    add_op -> OR
+Rule 64    term -> term mul_op factor
+Rule 65    term -> factor
+Rule 66    mul_op -> MULT
+Rule 67    mul_op -> DIVIDE
+Rule 68    mul_op -> AND
+Rule 69    mul_op -> DIV
+Rule 70    mul_op -> MOD
+Rule 71    factor -> const
+Rule 72    factor -> var
+Rule 73    factor -> ( expression )
+Rule 74    factor -> func_call
+Rule 75    while -> WHILE expression DO compound_statement PONTO_VIRGULA
+Rule 76    while -> WHILE ( expression ) DO compound_statement PONTO_VIRGULA
+Rule 77    for -> FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA
+Rule 78    for -> FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA
+Rule 79    compound_statement -> BEGIN statements END
+Rule 80    procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+Rule 81    function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+Rule 82    params -> param_list
+Rule 83    params -> empty
+Rule 84    param_list -> param
+Rule 85    param_list -> param_list PONTO_VIRGULA param
+Rule 86    param -> id_list DOISPONTOS type
+Rule 87    const -> STRING
+Rule 88    const -> NUM
+Rule 89    var -> ID
+Rule 90    var -> ID [ expression ]
+Rule 91    type -> INTEGER
+Rule 92    type -> REAL
+Rule 93    type -> STRING_TYPE
+Rule 94    type -> BOOLEAN
+Rule 95    type -> array_type
+Rule 96    array_type -> ARRAY [ NUM DOUBLEPOINTS NUM ] OF type
+Rule 97    array_type -> ARRAY [ NUM ] OF type
+Rule 98    func_call -> ID ( Args )
+Rule 99    func_call -> BUILTIN_FUNC ( Args )
+Rule 100   empty -> <empty>
+
+Terminals, with rules where they appear
+
+(                    : 25 26 27 28 73 76 80 81 98 99
+)                    : 25 26 27 28 73 76 80 81 98 99
+AND                  : 47 68
+ARRAY                : 96 97
+ASSIGN               : 33 77 78
+BEGIN                : 1 79 80 81
+BOOLEAN              : 94
+BUILTIN_FUNC         : 99
+CASE                 : 38 39
+COMMENT              : 
+DIFF                 : 54
+DIV                  : 69
+DIVIDE               : 67
+DO                   : 75 76 77 78
+DOISPONTOS           : 7 42 81 86
+DOUBLEPOINTS         : 96
+DOWNTO               : 78
+ELSE                 : 35 37 39
+END                  : 1 38 39 79 80 81
+FOR                  : 77 78
+FUNCTION             : 81
+ID                   : 1 8 9 77 78 80 81 89 90 98
+IF                   : 34 35 36 37
+IGUAL                : 53
+INTEGER              : 91
+MAIOR                : 55
+MAIOR_IGUAL          : 58
+MAIS                 : 61
+MENOR                : 56
+MENOR_IGUAL          : 57
+MENOS                : 62
+MOD                  : 70
+MULT                 : 66
+NL                   : 
+NOT                  : 49
+NUM                  : 88 96 96 97
+OF                   : 38 39 96 97
+OR                   : 45 63
+PONTO                : 1
+PONTO_VIRGULA        : 1 6 7 25 26 27 28 33 38 39 75 76 77 78 80 80 81 81 85
+PROCEDURE            : 80
+PROGRAM              : 1
+READ                 : 28
+READLN               : 27
+REAL                 : 92
+REPEAT               : 
+RETURN               : 
+SET                  : 
+STRING               : 87
+STRING_TYPE          : 93
+THEN                 : 34 35 36 37
+TO                   : 77
+TYPE                 : 
+VAR                  : 2
+VIRGULA              : 9 29 43
+WHILE                : 75 76
+WRITE                : 26
+WRITELN              : 25
+[                    : 90 96 97
+]                    : 90 96 97
+error                : 
+
+Nonterminals, with rules where they appear
+
+Arg                  : 29 30
+Args                 : 25 26 27 28 29 98 99
+add_op               : 59
+and_expr             : 45 46 47
+arith_expr           : 51 51 52 59
+array_type           : 95
+assign               : 13
+body                 : 1 80 81
+case                 : 19
+case_branch          : 40 41
+case_branches        : 38 39 40
+case_labels          : 42 43
+compound_statement   : 36 37 37 75 76 77 78
+const                : 31 43 44 71
+empty                : 3 83
+expression           : 33 34 35 36 37 38 39 45 73 75 76 77 77 78 78 90
+factor               : 64 65
+for                  : 21
+func_call            : 24 74
+function             : 22
+id_list              : 7 9 86
+if                   : 18
+mul_op               : 64
+not_expr             : 47 48 49
+param                : 84 85
+param_list           : 82 85
+params               : 80 81
+procedure            : 23
+program              : 0
+read                 : 17
+readln               : 16
+rel_expr             : 50
+rel_op               : 51
+statement            : 11 12 34 35 35 42
+statements           : 10 11 39 79
+term                 : 59 60 64
+type                 : 7 81 86 96 97
+var                  : 32 33 72
+var_declaration      : 4 5 6
+var_declaration_list : 2 5 6
+var_declaration_part : 1 80 81
+while                : 20
+write                : 15
+writeln              : 14
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . PROGRAM ID PONTO_VIRGULA var_declaration_part BEGIN body END PONTO
+
+    PROGRAM         shift and go to state 2
+
+    program                        shift and go to state 1
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> PROGRAM . ID PONTO_VIRGULA var_declaration_part BEGIN body END PONTO
+
+    ID              shift and go to state 3
+
+
+state 3
+
+    (1) program -> PROGRAM ID . PONTO_VIRGULA var_declaration_part BEGIN body END PONTO
+
+    PONTO_VIRGULA   shift and go to state 4
+
+
+state 4
+
+    (1) program -> PROGRAM ID PONTO_VIRGULA . var_declaration_part BEGIN body END PONTO
+    (2) var_declaration_part -> . VAR var_declaration_list
+    (3) var_declaration_part -> . empty
+    (100) empty -> .
+
+    VAR             shift and go to state 6
+    BEGIN           reduce using rule 100 (empty -> .)
+
+    var_declaration_part           shift and go to state 5
+    empty                          shift and go to state 7
+
+state 5
+
+    (1) program -> PROGRAM ID PONTO_VIRGULA var_declaration_part . BEGIN body END PONTO
+
+    BEGIN           shift and go to state 8
+
+
+state 6
+
+    (2) var_declaration_part -> VAR . var_declaration_list
+    (4) var_declaration_list -> . var_declaration
+    (5) var_declaration_list -> . var_declaration_list var_declaration
+    (6) var_declaration_list -> . var_declaration_list PONTO_VIRGULA var_declaration
+    (7) var_declaration -> . id_list DOISPONTOS type PONTO_VIRGULA
+    (8) id_list -> . ID
+    (9) id_list -> . id_list VIRGULA ID
+
+    ID              shift and go to state 12
+
+    var_declaration_list           shift and go to state 9
+    var_declaration                shift and go to state 10
+    id_list                        shift and go to state 11
+
+state 7
+
+    (3) var_declaration_part -> empty .
+
+    BEGIN           reduce using rule 3 (var_declaration_part -> empty .)
+
+
+state 8
+
+    (1) program -> PROGRAM ID PONTO_VIRGULA var_declaration_part BEGIN . body END PONTO
+    (10) body -> . statements
+    (11) statements -> . statements statement
+    (12) statements -> . statement
+    (13) statement -> . assign
+    (14) statement -> . writeln
+    (15) statement -> . write
+    (16) statement -> . readln
+    (17) statement -> . read
+    (18) statement -> . if
+    (19) statement -> . case
+    (20) statement -> . while
+    (21) statement -> . for
+    (22) statement -> . function
+    (23) statement -> . procedure
+    (24) statement -> . func_call
+    (33) assign -> . var ASSIGN expression PONTO_VIRGULA
+    (25) writeln -> . WRITELN ( Args ) PONTO_VIRGULA
+    (26) write -> . WRITE ( Args ) PONTO_VIRGULA
+    (27) readln -> . READLN ( Args ) PONTO_VIRGULA
+    (28) read -> . READ ( Args ) PONTO_VIRGULA
+    (34) if -> . IF expression THEN statement
+    (35) if -> . IF expression THEN statement ELSE statement
+    (36) if -> . IF expression THEN compound_statement
+    (37) if -> . IF expression THEN compound_statement ELSE compound_statement
+    (38) case -> . CASE expression OF case_branches END PONTO_VIRGULA
+    (39) case -> . CASE expression OF case_branches ELSE statements END PONTO_VIRGULA
+    (75) while -> . WHILE expression DO compound_statement PONTO_VIRGULA
+    (76) while -> . WHILE ( expression ) DO compound_statement PONTO_VIRGULA
+    (77) for -> . FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA
+    (78) for -> . FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA
+    (81) function -> . FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (80) procedure -> . PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+
+    WRITELN         shift and go to state 30
+    WRITE           shift and go to state 31
+    READLN          shift and go to state 32
+    READ            shift and go to state 33
+    IF              shift and go to state 34
+    CASE            shift and go to state 35
+    WHILE           shift and go to state 36
+    FOR             shift and go to state 37
+    FUNCTION        shift and go to state 38
+    PROCEDURE       shift and go to state 39
+    ID              shift and go to state 13
+    BUILTIN_FUNC    shift and go to state 40
+
+    body                           shift and go to state 14
+    statements                     shift and go to state 15
+    statement                      shift and go to state 16
+    assign                         shift and go to state 17
+    writeln                        shift and go to state 18
+    write                          shift and go to state 19
+    readln                         shift and go to state 20
+    read                           shift and go to state 21
+    if                             shift and go to state 22
+    case                           shift and go to state 23
+    while                          shift and go to state 24
+    for                            shift and go to state 25
+    function                       shift and go to state 26
+    procedure                      shift and go to state 27
+    func_call                      shift and go to state 28
+    var                            shift and go to state 29
+
+state 9
+
+    (2) var_declaration_part -> VAR var_declaration_list .
+    (5) var_declaration_list -> var_declaration_list . var_declaration
+    (6) var_declaration_list -> var_declaration_list . PONTO_VIRGULA var_declaration
+    (7) var_declaration -> . id_list DOISPONTOS type PONTO_VIRGULA
+    (8) id_list -> . ID
+    (9) id_list -> . id_list VIRGULA ID
+
+    BEGIN           reduce using rule 2 (var_declaration_part -> VAR var_declaration_list .)
+    PONTO_VIRGULA   shift and go to state 42
+    ID              shift and go to state 12
+
+    var_declaration                shift and go to state 41
+    id_list                        shift and go to state 11
+
+state 10
+
+    (4) var_declaration_list -> var_declaration .
+
+    PONTO_VIRGULA   reduce using rule 4 (var_declaration_list -> var_declaration .)
+    ID              reduce using rule 4 (var_declaration_list -> var_declaration .)
+    BEGIN           reduce using rule 4 (var_declaration_list -> var_declaration .)
+
+
+state 11
+
+    (7) var_declaration -> id_list . DOISPONTOS type PONTO_VIRGULA
+    (9) id_list -> id_list . VIRGULA ID
+
+    DOISPONTOS      shift and go to state 43
+    VIRGULA         shift and go to state 44
+
+
+state 12
+
+    (8) id_list -> ID .
+
+    DOISPONTOS      reduce using rule 8 (id_list -> ID .)
+    VIRGULA         reduce using rule 8 (id_list -> ID .)
+
+
+state 13
+
+    (98) func_call -> ID . ( Args )
+    (89) var -> ID .
+    (90) var -> ID . [ expression ]
+
+    (               shift and go to state 45
+    ASSIGN          reduce using rule 89 (var -> ID .)
+    [               shift and go to state 46
+
+
+state 14
+
+    (1) program -> PROGRAM ID PONTO_VIRGULA var_declaration_part BEGIN body . END PONTO
+
+    END             shift and go to state 47
+
+
+state 15
+
+    (10) body -> statements .
+    (11) statements -> statements . statement
+    (13) statement -> . assign
+    (14) statement -> . writeln
+    (15) statement -> . write
+    (16) statement -> . readln
+    (17) statement -> . read
+    (18) statement -> . if
+    (19) statement -> . case
+    (20) statement -> . while
+    (21) statement -> . for
+    (22) statement -> . function
+    (23) statement -> . procedure
+    (24) statement -> . func_call
+    (33) assign -> . var ASSIGN expression PONTO_VIRGULA
+    (25) writeln -> . WRITELN ( Args ) PONTO_VIRGULA
+    (26) write -> . WRITE ( Args ) PONTO_VIRGULA
+    (27) readln -> . READLN ( Args ) PONTO_VIRGULA
+    (28) read -> . READ ( Args ) PONTO_VIRGULA
+    (34) if -> . IF expression THEN statement
+    (35) if -> . IF expression THEN statement ELSE statement
+    (36) if -> . IF expression THEN compound_statement
+    (37) if -> . IF expression THEN compound_statement ELSE compound_statement
+    (38) case -> . CASE expression OF case_branches END PONTO_VIRGULA
+    (39) case -> . CASE expression OF case_branches ELSE statements END PONTO_VIRGULA
+    (75) while -> . WHILE expression DO compound_statement PONTO_VIRGULA
+    (76) while -> . WHILE ( expression ) DO compound_statement PONTO_VIRGULA
+    (77) for -> . FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA
+    (78) for -> . FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA
+    (81) function -> . FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (80) procedure -> . PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+
+    END             reduce using rule 10 (body -> statements .)
+    WRITELN         shift and go to state 30
+    WRITE           shift and go to state 31
+    READLN          shift and go to state 32
+    READ            shift and go to state 33
+    IF              shift and go to state 34
+    CASE            shift and go to state 35
+    WHILE           shift and go to state 36
+    FOR             shift and go to state 37
+    FUNCTION        shift and go to state 38
+    PROCEDURE       shift and go to state 39
+    ID              shift and go to state 13
+    BUILTIN_FUNC    shift and go to state 40
+
+    statement                      shift and go to state 48
+    assign                         shift and go to state 17
+    writeln                        shift and go to state 18
+    write                          shift and go to state 19
+    readln                         shift and go to state 20
+    read                           shift and go to state 21
+    if                             shift and go to state 22
+    case                           shift and go to state 23
+    while                          shift and go to state 24
+    for                            shift and go to state 25
+    function                       shift and go to state 26
+    procedure                      shift and go to state 27
+    func_call                      shift and go to state 28
+    var                            shift and go to state 29
+
+state 16
+
+    (12) statements -> statement .
+
+    WRITELN         reduce using rule 12 (statements -> statement .)
+    WRITE           reduce using rule 12 (statements -> statement .)
+    READLN          reduce using rule 12 (statements -> statement .)
+    READ            reduce using rule 12 (statements -> statement .)
+    IF              reduce using rule 12 (statements -> statement .)
+    CASE            reduce using rule 12 (statements -> statement .)
+    WHILE           reduce using rule 12 (statements -> statement .)
+    FOR             reduce using rule 12 (statements -> statement .)
+    FUNCTION        reduce using rule 12 (statements -> statement .)
+    PROCEDURE       reduce using rule 12 (statements -> statement .)
+    ID              reduce using rule 12 (statements -> statement .)
+    BUILTIN_FUNC    reduce using rule 12 (statements -> statement .)
+    END             reduce using rule 12 (statements -> statement .)
+
+
+state 17
+
+    (13) statement -> assign .
+
+    WRITELN         reduce using rule 13 (statement -> assign .)
+    WRITE           reduce using rule 13 (statement -> assign .)
+    READLN          reduce using rule 13 (statement -> assign .)
+    READ            reduce using rule 13 (statement -> assign .)
+    IF              reduce using rule 13 (statement -> assign .)
+    CASE            reduce using rule 13 (statement -> assign .)
+    WHILE           reduce using rule 13 (statement -> assign .)
+    FOR             reduce using rule 13 (statement -> assign .)
+    FUNCTION        reduce using rule 13 (statement -> assign .)
+    PROCEDURE       reduce using rule 13 (statement -> assign .)
+    ID              reduce using rule 13 (statement -> assign .)
+    BUILTIN_FUNC    reduce using rule 13 (statement -> assign .)
+    END             reduce using rule 13 (statement -> assign .)
+    ELSE            reduce using rule 13 (statement -> assign .)
+    STRING          reduce using rule 13 (statement -> assign .)
+    NUM             reduce using rule 13 (statement -> assign .)
+
+
+state 18
+
+    (14) statement -> writeln .
+
+    WRITELN         reduce using rule 14 (statement -> writeln .)
+    WRITE           reduce using rule 14 (statement -> writeln .)
+    READLN          reduce using rule 14 (statement -> writeln .)
+    READ            reduce using rule 14 (statement -> writeln .)
+    IF              reduce using rule 14 (statement -> writeln .)
+    CASE            reduce using rule 14 (statement -> writeln .)
+    WHILE           reduce using rule 14 (statement -> writeln .)
+    FOR             reduce using rule 14 (statement -> writeln .)
+    FUNCTION        reduce using rule 14 (statement -> writeln .)
+    PROCEDURE       reduce using rule 14 (statement -> writeln .)
+    ID              reduce using rule 14 (statement -> writeln .)
+    BUILTIN_FUNC    reduce using rule 14 (statement -> writeln .)
+    END             reduce using rule 14 (statement -> writeln .)
+    ELSE            reduce using rule 14 (statement -> writeln .)
+    STRING          reduce using rule 14 (statement -> writeln .)
+    NUM             reduce using rule 14 (statement -> writeln .)
+
+
+state 19
+
+    (15) statement -> write .
+
+    WRITELN         reduce using rule 15 (statement -> write .)
+    WRITE           reduce using rule 15 (statement -> write .)
+    READLN          reduce using rule 15 (statement -> write .)
+    READ            reduce using rule 15 (statement -> write .)
+    IF              reduce using rule 15 (statement -> write .)
+    CASE            reduce using rule 15 (statement -> write .)
+    WHILE           reduce using rule 15 (statement -> write .)
+    FOR             reduce using rule 15 (statement -> write .)
+    FUNCTION        reduce using rule 15 (statement -> write .)
+    PROCEDURE       reduce using rule 15 (statement -> write .)
+    ID              reduce using rule 15 (statement -> write .)
+    BUILTIN_FUNC    reduce using rule 15 (statement -> write .)
+    END             reduce using rule 15 (statement -> write .)
+    ELSE            reduce using rule 15 (statement -> write .)
+    STRING          reduce using rule 15 (statement -> write .)
+    NUM             reduce using rule 15 (statement -> write .)
+
+
+state 20
+
+    (16) statement -> readln .
+
+    WRITELN         reduce using rule 16 (statement -> readln .)
+    WRITE           reduce using rule 16 (statement -> readln .)
+    READLN          reduce using rule 16 (statement -> readln .)
+    READ            reduce using rule 16 (statement -> readln .)
+    IF              reduce using rule 16 (statement -> readln .)
+    CASE            reduce using rule 16 (statement -> readln .)
+    WHILE           reduce using rule 16 (statement -> readln .)
+    FOR             reduce using rule 16 (statement -> readln .)
+    FUNCTION        reduce using rule 16 (statement -> readln .)
+    PROCEDURE       reduce using rule 16 (statement -> readln .)
+    ID              reduce using rule 16 (statement -> readln .)
+    BUILTIN_FUNC    reduce using rule 16 (statement -> readln .)
+    END             reduce using rule 16 (statement -> readln .)
+    ELSE            reduce using rule 16 (statement -> readln .)
+    STRING          reduce using rule 16 (statement -> readln .)
+    NUM             reduce using rule 16 (statement -> readln .)
+
+
+state 21
+
+    (17) statement -> read .
+
+    WRITELN         reduce using rule 17 (statement -> read .)
+    WRITE           reduce using rule 17 (statement -> read .)
+    READLN          reduce using rule 17 (statement -> read .)
+    READ            reduce using rule 17 (statement -> read .)
+    IF              reduce using rule 17 (statement -> read .)
+    CASE            reduce using rule 17 (statement -> read .)
+    WHILE           reduce using rule 17 (statement -> read .)
+    FOR             reduce using rule 17 (statement -> read .)
+    FUNCTION        reduce using rule 17 (statement -> read .)
+    PROCEDURE       reduce using rule 17 (statement -> read .)
+    ID              reduce using rule 17 (statement -> read .)
+    BUILTIN_FUNC    reduce using rule 17 (statement -> read .)
+    END             reduce using rule 17 (statement -> read .)
+    ELSE            reduce using rule 17 (statement -> read .)
+    STRING          reduce using rule 17 (statement -> read .)
+    NUM             reduce using rule 17 (statement -> read .)
+
+
+state 22
+
+    (18) statement -> if .
+
+    WRITELN         reduce using rule 18 (statement -> if .)
+    WRITE           reduce using rule 18 (statement -> if .)
+    READLN          reduce using rule 18 (statement -> if .)
+    READ            reduce using rule 18 (statement -> if .)
+    IF              reduce using rule 18 (statement -> if .)
+    CASE            reduce using rule 18 (statement -> if .)
+    WHILE           reduce using rule 18 (statement -> if .)
+    FOR             reduce using rule 18 (statement -> if .)
+    FUNCTION        reduce using rule 18 (statement -> if .)
+    PROCEDURE       reduce using rule 18 (statement -> if .)
+    ID              reduce using rule 18 (statement -> if .)
+    BUILTIN_FUNC    reduce using rule 18 (statement -> if .)
+    END             reduce using rule 18 (statement -> if .)
+    ELSE            reduce using rule 18 (statement -> if .)
+    STRING          reduce using rule 18 (statement -> if .)
+    NUM             reduce using rule 18 (statement -> if .)
+
+
+state 23
+
+    (19) statement -> case .
+
+    WRITELN         reduce using rule 19 (statement -> case .)
+    WRITE           reduce using rule 19 (statement -> case .)
+    READLN          reduce using rule 19 (statement -> case .)
+    READ            reduce using rule 19 (statement -> case .)
+    IF              reduce using rule 19 (statement -> case .)
+    CASE            reduce using rule 19 (statement -> case .)
+    WHILE           reduce using rule 19 (statement -> case .)
+    FOR             reduce using rule 19 (statement -> case .)
+    FUNCTION        reduce using rule 19 (statement -> case .)
+    PROCEDURE       reduce using rule 19 (statement -> case .)
+    ID              reduce using rule 19 (statement -> case .)
+    BUILTIN_FUNC    reduce using rule 19 (statement -> case .)
+    END             reduce using rule 19 (statement -> case .)
+    ELSE            reduce using rule 19 (statement -> case .)
+    STRING          reduce using rule 19 (statement -> case .)
+    NUM             reduce using rule 19 (statement -> case .)
+
+
+state 24
+
+    (20) statement -> while .
+
+    WRITELN         reduce using rule 20 (statement -> while .)
+    WRITE           reduce using rule 20 (statement -> while .)
+    READLN          reduce using rule 20 (statement -> while .)
+    READ            reduce using rule 20 (statement -> while .)
+    IF              reduce using rule 20 (statement -> while .)
+    CASE            reduce using rule 20 (statement -> while .)
+    WHILE           reduce using rule 20 (statement -> while .)
+    FOR             reduce using rule 20 (statement -> while .)
+    FUNCTION        reduce using rule 20 (statement -> while .)
+    PROCEDURE       reduce using rule 20 (statement -> while .)
+    ID              reduce using rule 20 (statement -> while .)
+    BUILTIN_FUNC    reduce using rule 20 (statement -> while .)
+    END             reduce using rule 20 (statement -> while .)
+    ELSE            reduce using rule 20 (statement -> while .)
+    STRING          reduce using rule 20 (statement -> while .)
+    NUM             reduce using rule 20 (statement -> while .)
+
+
+state 25
+
+    (21) statement -> for .
+
+    WRITELN         reduce using rule 21 (statement -> for .)
+    WRITE           reduce using rule 21 (statement -> for .)
+    READLN          reduce using rule 21 (statement -> for .)
+    READ            reduce using rule 21 (statement -> for .)
+    IF              reduce using rule 21 (statement -> for .)
+    CASE            reduce using rule 21 (statement -> for .)
+    WHILE           reduce using rule 21 (statement -> for .)
+    FOR             reduce using rule 21 (statement -> for .)
+    FUNCTION        reduce using rule 21 (statement -> for .)
+    PROCEDURE       reduce using rule 21 (statement -> for .)
+    ID              reduce using rule 21 (statement -> for .)
+    BUILTIN_FUNC    reduce using rule 21 (statement -> for .)
+    END             reduce using rule 21 (statement -> for .)
+    ELSE            reduce using rule 21 (statement -> for .)
+    STRING          reduce using rule 21 (statement -> for .)
+    NUM             reduce using rule 21 (statement -> for .)
+
+
+state 26
+
+    (22) statement -> function .
+
+    WRITELN         reduce using rule 22 (statement -> function .)
+    WRITE           reduce using rule 22 (statement -> function .)
+    READLN          reduce using rule 22 (statement -> function .)
+    READ            reduce using rule 22 (statement -> function .)
+    IF              reduce using rule 22 (statement -> function .)
+    CASE            reduce using rule 22 (statement -> function .)
+    WHILE           reduce using rule 22 (statement -> function .)
+    FOR             reduce using rule 22 (statement -> function .)
+    FUNCTION        reduce using rule 22 (statement -> function .)
+    PROCEDURE       reduce using rule 22 (statement -> function .)
+    ID              reduce using rule 22 (statement -> function .)
+    BUILTIN_FUNC    reduce using rule 22 (statement -> function .)
+    END             reduce using rule 22 (statement -> function .)
+    ELSE            reduce using rule 22 (statement -> function .)
+    STRING          reduce using rule 22 (statement -> function .)
+    NUM             reduce using rule 22 (statement -> function .)
+
+
+state 27
+
+    (23) statement -> procedure .
+
+    WRITELN         reduce using rule 23 (statement -> procedure .)
+    WRITE           reduce using rule 23 (statement -> procedure .)
+    READLN          reduce using rule 23 (statement -> procedure .)
+    READ            reduce using rule 23 (statement -> procedure .)
+    IF              reduce using rule 23 (statement -> procedure .)
+    CASE            reduce using rule 23 (statement -> procedure .)
+    WHILE           reduce using rule 23 (statement -> procedure .)
+    FOR             reduce using rule 23 (statement -> procedure .)
+    FUNCTION        reduce using rule 23 (statement -> procedure .)
+    PROCEDURE       reduce using rule 23 (statement -> procedure .)
+    ID              reduce using rule 23 (statement -> procedure .)
+    BUILTIN_FUNC    reduce using rule 23 (statement -> procedure .)
+    END             reduce using rule 23 (statement -> procedure .)
+    ELSE            reduce using rule 23 (statement -> procedure .)
+    STRING          reduce using rule 23 (statement -> procedure .)
+    NUM             reduce using rule 23 (statement -> procedure .)
+
+
+state 28
+
+    (24) statement -> func_call .
+
+    WRITELN         reduce using rule 24 (statement -> func_call .)
+    WRITE           reduce using rule 24 (statement -> func_call .)
+    READLN          reduce using rule 24 (statement -> func_call .)
+    READ            reduce using rule 24 (statement -> func_call .)
+    IF              reduce using rule 24 (statement -> func_call .)
+    CASE            reduce using rule 24 (statement -> func_call .)
+    WHILE           reduce using rule 24 (statement -> func_call .)
+    FOR             reduce using rule 24 (statement -> func_call .)
+    FUNCTION        reduce using rule 24 (statement -> func_call .)
+    PROCEDURE       reduce using rule 24 (statement -> func_call .)
+    ID              reduce using rule 24 (statement -> func_call .)
+    BUILTIN_FUNC    reduce using rule 24 (statement -> func_call .)
+    END             reduce using rule 24 (statement -> func_call .)
+    ELSE            reduce using rule 24 (statement -> func_call .)
+    STRING          reduce using rule 24 (statement -> func_call .)
+    NUM             reduce using rule 24 (statement -> func_call .)
+
+
+state 29
+
+    (33) assign -> var . ASSIGN expression PONTO_VIRGULA
+
+    ASSIGN          shift and go to state 49
+
+
+state 30
+
+    (25) writeln -> WRITELN . ( Args ) PONTO_VIRGULA
+
+    (               shift and go to state 50
+
+
+state 31
+
+    (26) write -> WRITE . ( Args ) PONTO_VIRGULA
+
+    (               shift and go to state 51
+
+
+state 32
+
+    (27) readln -> READLN . ( Args ) PONTO_VIRGULA
+
+    (               shift and go to state 52
+
+
+state 33
+
+    (28) read -> READ . ( Args ) PONTO_VIRGULA
+
+    (               shift and go to state 53
+
+
+state 34
+
+    (34) if -> IF . expression THEN statement
+    (35) if -> IF . expression THEN statement ELSE statement
+    (36) if -> IF . expression THEN compound_statement
+    (37) if -> IF . expression THEN compound_statement ELSE compound_statement
+    (45) expression -> . expression OR and_expr
+    (46) expression -> . and_expr
+    (47) and_expr -> . and_expr AND not_expr
+    (48) and_expr -> . not_expr
+    (49) not_expr -> . NOT not_expr
+    (50) not_expr -> . rel_expr
+    (51) rel_expr -> . arith_expr rel_op arith_expr
+    (52) rel_expr -> . arith_expr
+    (59) arith_expr -> . arith_expr add_op term
+    (60) arith_expr -> . term
+    (64) term -> . term mul_op factor
+    (65) term -> . factor
+    (71) factor -> . const
+    (72) factor -> . var
+    (73) factor -> . ( expression )
+    (74) factor -> . func_call
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+
+    NOT             shift and go to state 57
+    (               shift and go to state 64
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 68
+    BUILTIN_FUNC    shift and go to state 40
+
+    expression                     shift and go to state 54
+    and_expr                       shift and go to state 55
+    not_expr                       shift and go to state 56
+    rel_expr                       shift and go to state 58
+    arith_expr                     shift and go to state 59
+    term                           shift and go to state 60
+    factor                         shift and go to state 61
+    const                          shift and go to state 62
+    var                            shift and go to state 63
+    func_call                      shift and go to state 65
+
+state 35
+
+    (38) case -> CASE . expression OF case_branches END PONTO_VIRGULA
+    (39) case -> CASE . expression OF case_branches ELSE statements END PONTO_VIRGULA
+    (45) expression -> . expression OR and_expr
+    (46) expression -> . and_expr
+    (47) and_expr -> . and_expr AND not_expr
+    (48) and_expr -> . not_expr
+    (49) not_expr -> . NOT not_expr
+    (50) not_expr -> . rel_expr
+    (51) rel_expr -> . arith_expr rel_op arith_expr
+    (52) rel_expr -> . arith_expr
+    (59) arith_expr -> . arith_expr add_op term
+    (60) arith_expr -> . term
+    (64) term -> . term mul_op factor
+    (65) term -> . factor
+    (71) factor -> . const
+    (72) factor -> . var
+    (73) factor -> . ( expression )
+    (74) factor -> . func_call
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+
+    NOT             shift and go to state 57
+    (               shift and go to state 64
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 68
+    BUILTIN_FUNC    shift and go to state 40
+
+    expression                     shift and go to state 69
+    and_expr                       shift and go to state 55
+    not_expr                       shift and go to state 56
+    rel_expr                       shift and go to state 58
+    arith_expr                     shift and go to state 59
+    term                           shift and go to state 60
+    factor                         shift and go to state 61
+    const                          shift and go to state 62
+    var                            shift and go to state 63
+    func_call                      shift and go to state 65
+
+state 36
+
+    (75) while -> WHILE . expression DO compound_statement PONTO_VIRGULA
+    (76) while -> WHILE . ( expression ) DO compound_statement PONTO_VIRGULA
+    (45) expression -> . expression OR and_expr
+    (46) expression -> . and_expr
+    (47) and_expr -> . and_expr AND not_expr
+    (48) and_expr -> . not_expr
+    (49) not_expr -> . NOT not_expr
+    (50) not_expr -> . rel_expr
+    (51) rel_expr -> . arith_expr rel_op arith_expr
+    (52) rel_expr -> . arith_expr
+    (59) arith_expr -> . arith_expr add_op term
+    (60) arith_expr -> . term
+    (64) term -> . term mul_op factor
+    (65) term -> . factor
+    (71) factor -> . const
+    (72) factor -> . var
+    (73) factor -> . ( expression )
+    (74) factor -> . func_call
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+
+    (               shift and go to state 71
+    NOT             shift and go to state 57
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 68
+    BUILTIN_FUNC    shift and go to state 40
+
+    expression                     shift and go to state 70
+    and_expr                       shift and go to state 55
+    not_expr                       shift and go to state 56
+    rel_expr                       shift and go to state 58
+    arith_expr                     shift and go to state 59
+    term                           shift and go to state 60
+    factor                         shift and go to state 61
+    const                          shift and go to state 62
+    var                            shift and go to state 63
+    func_call                      shift and go to state 65
+
+state 37
+
+    (77) for -> FOR . ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA
+    (78) for -> FOR . ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA
+
+    ID              shift and go to state 72
+
+
+state 38
+
+    (81) function -> FUNCTION . ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+
+    ID              shift and go to state 73
+
+
+state 39
+
+    (80) procedure -> PROCEDURE . ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+
+    ID              shift and go to state 74
+
+
+state 40
+
+    (99) func_call -> BUILTIN_FUNC . ( Args )
+
+    (               shift and go to state 75
+
+
+state 41
+
+    (5) var_declaration_list -> var_declaration_list var_declaration .
+
+    PONTO_VIRGULA   reduce using rule 5 (var_declaration_list -> var_declaration_list var_declaration .)
+    ID              reduce using rule 5 (var_declaration_list -> var_declaration_list var_declaration .)
+    BEGIN           reduce using rule 5 (var_declaration_list -> var_declaration_list var_declaration .)
+
+
+state 42
+
+    (6) var_declaration_list -> var_declaration_list PONTO_VIRGULA . var_declaration
+    (7) var_declaration -> . id_list DOISPONTOS type PONTO_VIRGULA
+    (8) id_list -> . ID
+    (9) id_list -> . id_list VIRGULA ID
+
+    ID              shift and go to state 12
+
+    var_declaration                shift and go to state 76
+    id_list                        shift and go to state 11
+
+state 43
+
+    (7) var_declaration -> id_list DOISPONTOS . type PONTO_VIRGULA
+    (91) type -> . INTEGER
+    (92) type -> . REAL
+    (93) type -> . STRING_TYPE
+    (94) type -> . BOOLEAN
+    (95) type -> . array_type
+    (96) array_type -> . ARRAY [ NUM DOUBLEPOINTS NUM ] OF type
+    (97) array_type -> . ARRAY [ NUM ] OF type
+
+    INTEGER         shift and go to state 78
+    REAL            shift and go to state 79
+    STRING_TYPE     shift and go to state 80
+    BOOLEAN         shift and go to state 81
+    ARRAY           shift and go to state 83
+
+    type                           shift and go to state 77
+    array_type                     shift and go to state 82
+
+state 44
+
+    (9) id_list -> id_list VIRGULA . ID
+
+    ID              shift and go to state 84
+
+
+state 45
+
+    (98) func_call -> ID ( . Args )
+    (29) Args -> . Args VIRGULA Arg
+    (30) Args -> . Arg
+    (31) Arg -> . const
+    (32) Arg -> . var
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 85
+
+    Args                           shift and go to state 86
+    Arg                            shift and go to state 87
+    const                          shift and go to state 88
+    var                            shift and go to state 89
+
+state 46
+
+    (90) var -> ID [ . expression ]
+    (45) expression -> . expression OR and_expr
+    (46) expression -> . and_expr
+    (47) and_expr -> . and_expr AND not_expr
+    (48) and_expr -> . not_expr
+    (49) not_expr -> . NOT not_expr
+    (50) not_expr -> . rel_expr
+    (51) rel_expr -> . arith_expr rel_op arith_expr
+    (52) rel_expr -> . arith_expr
+    (59) arith_expr -> . arith_expr add_op term
+    (60) arith_expr -> . term
+    (64) term -> . term mul_op factor
+    (65) term -> . factor
+    (71) factor -> . const
+    (72) factor -> . var
+    (73) factor -> . ( expression )
+    (74) factor -> . func_call
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+
+    NOT             shift and go to state 57
+    (               shift and go to state 64
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 68
+    BUILTIN_FUNC    shift and go to state 40
+
+    expression                     shift and go to state 90
+    and_expr                       shift and go to state 55
+    not_expr                       shift and go to state 56
+    rel_expr                       shift and go to state 58
+    arith_expr                     shift and go to state 59
+    term                           shift and go to state 60
+    factor                         shift and go to state 61
+    const                          shift and go to state 62
+    var                            shift and go to state 63
+    func_call                      shift and go to state 65
+
+state 47
+
+    (1) program -> PROGRAM ID PONTO_VIRGULA var_declaration_part BEGIN body END . PONTO
+
+    PONTO           shift and go to state 91
+
+
+state 48
+
+    (11) statements -> statements statement .
+
+    WRITELN         reduce using rule 11 (statements -> statements statement .)
+    WRITE           reduce using rule 11 (statements -> statements statement .)
+    READLN          reduce using rule 11 (statements -> statements statement .)
+    READ            reduce using rule 11 (statements -> statements statement .)
+    IF              reduce using rule 11 (statements -> statements statement .)
+    CASE            reduce using rule 11 (statements -> statements statement .)
+    WHILE           reduce using rule 11 (statements -> statements statement .)
+    FOR             reduce using rule 11 (statements -> statements statement .)
+    FUNCTION        reduce using rule 11 (statements -> statements statement .)
+    PROCEDURE       reduce using rule 11 (statements -> statements statement .)
+    ID              reduce using rule 11 (statements -> statements statement .)
+    BUILTIN_FUNC    reduce using rule 11 (statements -> statements statement .)
+    END             reduce using rule 11 (statements -> statements statement .)
+
+
+state 49
+
+    (33) assign -> var ASSIGN . expression PONTO_VIRGULA
+    (45) expression -> . expression OR and_expr
+    (46) expression -> . and_expr
+    (47) and_expr -> . and_expr AND not_expr
+    (48) and_expr -> . not_expr
+    (49) not_expr -> . NOT not_expr
+    (50) not_expr -> . rel_expr
+    (51) rel_expr -> . arith_expr rel_op arith_expr
+    (52) rel_expr -> . arith_expr
+    (59) arith_expr -> . arith_expr add_op term
+    (60) arith_expr -> . term
+    (64) term -> . term mul_op factor
+    (65) term -> . factor
+    (71) factor -> . const
+    (72) factor -> . var
+    (73) factor -> . ( expression )
+    (74) factor -> . func_call
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+
+    NOT             shift and go to state 57
+    (               shift and go to state 64
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 68
+    BUILTIN_FUNC    shift and go to state 40
+
+    var                            shift and go to state 63
+    expression                     shift and go to state 92
+    and_expr                       shift and go to state 55
+    not_expr                       shift and go to state 56
+    rel_expr                       shift and go to state 58
+    arith_expr                     shift and go to state 59
+    term                           shift and go to state 60
+    factor                         shift and go to state 61
+    const                          shift and go to state 62
+    func_call                      shift and go to state 65
+
+state 50
+
+    (25) writeln -> WRITELN ( . Args ) PONTO_VIRGULA
+    (29) Args -> . Args VIRGULA Arg
+    (30) Args -> . Arg
+    (31) Arg -> . const
+    (32) Arg -> . var
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 85
+
+    Args                           shift and go to state 93
+    Arg                            shift and go to state 87
+    const                          shift and go to state 88
+    var                            shift and go to state 89
+
+state 51
+
+    (26) write -> WRITE ( . Args ) PONTO_VIRGULA
+    (29) Args -> . Args VIRGULA Arg
+    (30) Args -> . Arg
+    (31) Arg -> . const
+    (32) Arg -> . var
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 85
+
+    Args                           shift and go to state 94
+    Arg                            shift and go to state 87
+    const                          shift and go to state 88
+    var                            shift and go to state 89
+
+state 52
+
+    (27) readln -> READLN ( . Args ) PONTO_VIRGULA
+    (29) Args -> . Args VIRGULA Arg
+    (30) Args -> . Arg
+    (31) Arg -> . const
+    (32) Arg -> . var
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 85
+
+    Args                           shift and go to state 95
+    Arg                            shift and go to state 87
+    const                          shift and go to state 88
+    var                            shift and go to state 89
+
+state 53
+
+    (28) read -> READ ( . Args ) PONTO_VIRGULA
+    (29) Args -> . Args VIRGULA Arg
+    (30) Args -> . Arg
+    (31) Arg -> . const
+    (32) Arg -> . var
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 85
+
+    Args                           shift and go to state 96
+    Arg                            shift and go to state 87
+    const                          shift and go to state 88
+    var                            shift and go to state 89
+
+state 54
+
+    (34) if -> IF expression . THEN statement
+    (35) if -> IF expression . THEN statement ELSE statement
+    (36) if -> IF expression . THEN compound_statement
+    (37) if -> IF expression . THEN compound_statement ELSE compound_statement
+    (45) expression -> expression . OR and_expr
+
+    THEN            shift and go to state 97
+    OR              shift and go to state 98
+
+
+state 55
+
+    (46) expression -> and_expr .
+    (47) and_expr -> and_expr . AND not_expr
+
+    THEN            reduce using rule 46 (expression -> and_expr .)
+    OR              reduce using rule 46 (expression -> and_expr .)
+    OF              reduce using rule 46 (expression -> and_expr .)
+    DO              reduce using rule 46 (expression -> and_expr .)
+    ]               reduce using rule 46 (expression -> and_expr .)
+    PONTO_VIRGULA   reduce using rule 46 (expression -> and_expr .)
+    )               reduce using rule 46 (expression -> and_expr .)
+    TO              reduce using rule 46 (expression -> and_expr .)
+    DOWNTO          reduce using rule 46 (expression -> and_expr .)
+    AND             shift and go to state 99
+
+
+state 56
+
+    (48) and_expr -> not_expr .
+
+    AND             reduce using rule 48 (and_expr -> not_expr .)
+    THEN            reduce using rule 48 (and_expr -> not_expr .)
+    OR              reduce using rule 48 (and_expr -> not_expr .)
+    OF              reduce using rule 48 (and_expr -> not_expr .)
+    DO              reduce using rule 48 (and_expr -> not_expr .)
+    ]               reduce using rule 48 (and_expr -> not_expr .)
+    PONTO_VIRGULA   reduce using rule 48 (and_expr -> not_expr .)
+    )               reduce using rule 48 (and_expr -> not_expr .)
+    TO              reduce using rule 48 (and_expr -> not_expr .)
+    DOWNTO          reduce using rule 48 (and_expr -> not_expr .)
+
+
+state 57
+
+    (49) not_expr -> NOT . not_expr
+    (49) not_expr -> . NOT not_expr
+    (50) not_expr -> . rel_expr
+    (51) rel_expr -> . arith_expr rel_op arith_expr
+    (52) rel_expr -> . arith_expr
+    (59) arith_expr -> . arith_expr add_op term
+    (60) arith_expr -> . term
+    (64) term -> . term mul_op factor
+    (65) term -> . factor
+    (71) factor -> . const
+    (72) factor -> . var
+    (73) factor -> . ( expression )
+    (74) factor -> . func_call
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+
+    NOT             shift and go to state 57
+    (               shift and go to state 64
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 68
+    BUILTIN_FUNC    shift and go to state 40
+
+    not_expr                       shift and go to state 100
+    rel_expr                       shift and go to state 58
+    arith_expr                     shift and go to state 59
+    term                           shift and go to state 60
+    factor                         shift and go to state 61
+    const                          shift and go to state 62
+    var                            shift and go to state 63
+    func_call                      shift and go to state 65
+
+state 58
+
+    (50) not_expr -> rel_expr .
+
+    AND             reduce using rule 50 (not_expr -> rel_expr .)
+    THEN            reduce using rule 50 (not_expr -> rel_expr .)
+    OR              reduce using rule 50 (not_expr -> rel_expr .)
+    OF              reduce using rule 50 (not_expr -> rel_expr .)
+    DO              reduce using rule 50 (not_expr -> rel_expr .)
+    ]               reduce using rule 50 (not_expr -> rel_expr .)
+    PONTO_VIRGULA   reduce using rule 50 (not_expr -> rel_expr .)
+    )               reduce using rule 50 (not_expr -> rel_expr .)
+    TO              reduce using rule 50 (not_expr -> rel_expr .)
+    DOWNTO          reduce using rule 50 (not_expr -> rel_expr .)
+
+
+state 59
+
+    (51) rel_expr -> arith_expr . rel_op arith_expr
+    (52) rel_expr -> arith_expr .
+    (59) arith_expr -> arith_expr . add_op term
+    (53) rel_op -> . IGUAL
+    (54) rel_op -> . DIFF
+    (55) rel_op -> . MAIOR
+    (56) rel_op -> . MENOR
+    (57) rel_op -> . MENOR_IGUAL
+    (58) rel_op -> . MAIOR_IGUAL
+    (61) add_op -> . MAIS
+    (62) add_op -> . MENOS
+    (63) add_op -> . OR
+
+  ! shift/reduce conflict for OR resolved as shift
+    AND             reduce using rule 52 (rel_expr -> arith_expr .)
+    THEN            reduce using rule 52 (rel_expr -> arith_expr .)
+    OF              reduce using rule 52 (rel_expr -> arith_expr .)
+    DO              reduce using rule 52 (rel_expr -> arith_expr .)
+    ]               reduce using rule 52 (rel_expr -> arith_expr .)
+    PONTO_VIRGULA   reduce using rule 52 (rel_expr -> arith_expr .)
+    )               reduce using rule 52 (rel_expr -> arith_expr .)
+    TO              reduce using rule 52 (rel_expr -> arith_expr .)
+    DOWNTO          reduce using rule 52 (rel_expr -> arith_expr .)
+    IGUAL           shift and go to state 103
+    DIFF            shift and go to state 104
+    MAIOR           shift and go to state 105
+    MENOR           shift and go to state 106
+    MENOR_IGUAL     shift and go to state 107
+    MAIOR_IGUAL     shift and go to state 108
+    MAIS            shift and go to state 109
+    MENOS           shift and go to state 110
+    OR              shift and go to state 111
+
+  ! OR              [ reduce using rule 52 (rel_expr -> arith_expr .) ]
+
+    rel_op                         shift and go to state 101
+    add_op                         shift and go to state 102
+
+state 60
+
+    (60) arith_expr -> term .
+    (64) term -> term . mul_op factor
+    (66) mul_op -> . MULT
+    (67) mul_op -> . DIVIDE
+    (68) mul_op -> . AND
+    (69) mul_op -> . DIV
+    (70) mul_op -> . MOD
+
+  ! shift/reduce conflict for AND resolved as shift
+    IGUAL           reduce using rule 60 (arith_expr -> term .)
+    DIFF            reduce using rule 60 (arith_expr -> term .)
+    MAIOR           reduce using rule 60 (arith_expr -> term .)
+    MENOR           reduce using rule 60 (arith_expr -> term .)
+    MENOR_IGUAL     reduce using rule 60 (arith_expr -> term .)
+    MAIOR_IGUAL     reduce using rule 60 (arith_expr -> term .)
+    MAIS            reduce using rule 60 (arith_expr -> term .)
+    MENOS           reduce using rule 60 (arith_expr -> term .)
+    OR              reduce using rule 60 (arith_expr -> term .)
+    THEN            reduce using rule 60 (arith_expr -> term .)
+    OF              reduce using rule 60 (arith_expr -> term .)
+    DO              reduce using rule 60 (arith_expr -> term .)
+    ]               reduce using rule 60 (arith_expr -> term .)
+    PONTO_VIRGULA   reduce using rule 60 (arith_expr -> term .)
+    )               reduce using rule 60 (arith_expr -> term .)
+    TO              reduce using rule 60 (arith_expr -> term .)
+    DOWNTO          reduce using rule 60 (arith_expr -> term .)
+    MULT            shift and go to state 113
+    DIVIDE          shift and go to state 114
+    AND             shift and go to state 115
+    DIV             shift and go to state 116
+    MOD             shift and go to state 117
+
+  ! AND             [ reduce using rule 60 (arith_expr -> term .) ]
+
+    mul_op                         shift and go to state 112
+
+state 61
+
+    (65) term -> factor .
+
+    MULT            reduce using rule 65 (term -> factor .)
+    DIVIDE          reduce using rule 65 (term -> factor .)
+    AND             reduce using rule 65 (term -> factor .)
+    DIV             reduce using rule 65 (term -> factor .)
+    MOD             reduce using rule 65 (term -> factor .)
+    IGUAL           reduce using rule 65 (term -> factor .)
+    DIFF            reduce using rule 65 (term -> factor .)
+    MAIOR           reduce using rule 65 (term -> factor .)
+    MENOR           reduce using rule 65 (term -> factor .)
+    MENOR_IGUAL     reduce using rule 65 (term -> factor .)
+    MAIOR_IGUAL     reduce using rule 65 (term -> factor .)
+    MAIS            reduce using rule 65 (term -> factor .)
+    MENOS           reduce using rule 65 (term -> factor .)
+    OR              reduce using rule 65 (term -> factor .)
+    THEN            reduce using rule 65 (term -> factor .)
+    OF              reduce using rule 65 (term -> factor .)
+    DO              reduce using rule 65 (term -> factor .)
+    ]               reduce using rule 65 (term -> factor .)
+    PONTO_VIRGULA   reduce using rule 65 (term -> factor .)
+    )               reduce using rule 65 (term -> factor .)
+    TO              reduce using rule 65 (term -> factor .)
+    DOWNTO          reduce using rule 65 (term -> factor .)
+
+
+state 62
+
+    (71) factor -> const .
+
+    MULT            reduce using rule 71 (factor -> const .)
+    DIVIDE          reduce using rule 71 (factor -> const .)
+    AND             reduce using rule 71 (factor -> const .)
+    DIV             reduce using rule 71 (factor -> const .)
+    MOD             reduce using rule 71 (factor -> const .)
+    IGUAL           reduce using rule 71 (factor -> const .)
+    DIFF            reduce using rule 71 (factor -> const .)
+    MAIOR           reduce using rule 71 (factor -> const .)
+    MENOR           reduce using rule 71 (factor -> const .)
+    MENOR_IGUAL     reduce using rule 71 (factor -> const .)
+    MAIOR_IGUAL     reduce using rule 71 (factor -> const .)
+    MAIS            reduce using rule 71 (factor -> const .)
+    MENOS           reduce using rule 71 (factor -> const .)
+    OR              reduce using rule 71 (factor -> const .)
+    THEN            reduce using rule 71 (factor -> const .)
+    OF              reduce using rule 71 (factor -> const .)
+    DO              reduce using rule 71 (factor -> const .)
+    ]               reduce using rule 71 (factor -> const .)
+    PONTO_VIRGULA   reduce using rule 71 (factor -> const .)
+    )               reduce using rule 71 (factor -> const .)
+    TO              reduce using rule 71 (factor -> const .)
+    DOWNTO          reduce using rule 71 (factor -> const .)
+
+
+state 63
+
+    (72) factor -> var .
+
+    MULT            reduce using rule 72 (factor -> var .)
+    DIVIDE          reduce using rule 72 (factor -> var .)
+    AND             reduce using rule 72 (factor -> var .)
+    DIV             reduce using rule 72 (factor -> var .)
+    MOD             reduce using rule 72 (factor -> var .)
+    IGUAL           reduce using rule 72 (factor -> var .)
+    DIFF            reduce using rule 72 (factor -> var .)
+    MAIOR           reduce using rule 72 (factor -> var .)
+    MENOR           reduce using rule 72 (factor -> var .)
+    MENOR_IGUAL     reduce using rule 72 (factor -> var .)
+    MAIOR_IGUAL     reduce using rule 72 (factor -> var .)
+    MAIS            reduce using rule 72 (factor -> var .)
+    MENOS           reduce using rule 72 (factor -> var .)
+    OR              reduce using rule 72 (factor -> var .)
+    THEN            reduce using rule 72 (factor -> var .)
+    OF              reduce using rule 72 (factor -> var .)
+    DO              reduce using rule 72 (factor -> var .)
+    ]               reduce using rule 72 (factor -> var .)
+    PONTO_VIRGULA   reduce using rule 72 (factor -> var .)
+    )               reduce using rule 72 (factor -> var .)
+    TO              reduce using rule 72 (factor -> var .)
+    DOWNTO          reduce using rule 72 (factor -> var .)
+
+
+state 64
+
+    (73) factor -> ( . expression )
+    (45) expression -> . expression OR and_expr
+    (46) expression -> . and_expr
+    (47) and_expr -> . and_expr AND not_expr
+    (48) and_expr -> . not_expr
+    (49) not_expr -> . NOT not_expr
+    (50) not_expr -> . rel_expr
+    (51) rel_expr -> . arith_expr rel_op arith_expr
+    (52) rel_expr -> . arith_expr
+    (59) arith_expr -> . arith_expr add_op term
+    (60) arith_expr -> . term
+    (64) term -> . term mul_op factor
+    (65) term -> . factor
+    (71) factor -> . const
+    (72) factor -> . var
+    (73) factor -> . ( expression )
+    (74) factor -> . func_call
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+
+    NOT             shift and go to state 57
+    (               shift and go to state 64
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 68
+    BUILTIN_FUNC    shift and go to state 40
+
+    expression                     shift and go to state 118
+    and_expr                       shift and go to state 55
+    not_expr                       shift and go to state 56
+    rel_expr                       shift and go to state 58
+    arith_expr                     shift and go to state 59
+    term                           shift and go to state 60
+    factor                         shift and go to state 61
+    const                          shift and go to state 62
+    var                            shift and go to state 63
+    func_call                      shift and go to state 65
+
+state 65
+
+    (74) factor -> func_call .
+
+    MULT            reduce using rule 74 (factor -> func_call .)
+    DIVIDE          reduce using rule 74 (factor -> func_call .)
+    AND             reduce using rule 74 (factor -> func_call .)
+    DIV             reduce using rule 74 (factor -> func_call .)
+    MOD             reduce using rule 74 (factor -> func_call .)
+    IGUAL           reduce using rule 74 (factor -> func_call .)
+    DIFF            reduce using rule 74 (factor -> func_call .)
+    MAIOR           reduce using rule 74 (factor -> func_call .)
+    MENOR           reduce using rule 74 (factor -> func_call .)
+    MENOR_IGUAL     reduce using rule 74 (factor -> func_call .)
+    MAIOR_IGUAL     reduce using rule 74 (factor -> func_call .)
+    MAIS            reduce using rule 74 (factor -> func_call .)
+    MENOS           reduce using rule 74 (factor -> func_call .)
+    OR              reduce using rule 74 (factor -> func_call .)
+    THEN            reduce using rule 74 (factor -> func_call .)
+    OF              reduce using rule 74 (factor -> func_call .)
+    DO              reduce using rule 74 (factor -> func_call .)
+    ]               reduce using rule 74 (factor -> func_call .)
+    PONTO_VIRGULA   reduce using rule 74 (factor -> func_call .)
+    )               reduce using rule 74 (factor -> func_call .)
+    TO              reduce using rule 74 (factor -> func_call .)
+    DOWNTO          reduce using rule 74 (factor -> func_call .)
+
+
+state 66
+
+    (87) const -> STRING .
+
+    MULT            reduce using rule 87 (const -> STRING .)
+    DIVIDE          reduce using rule 87 (const -> STRING .)
+    AND             reduce using rule 87 (const -> STRING .)
+    DIV             reduce using rule 87 (const -> STRING .)
+    MOD             reduce using rule 87 (const -> STRING .)
+    IGUAL           reduce using rule 87 (const -> STRING .)
+    DIFF            reduce using rule 87 (const -> STRING .)
+    MAIOR           reduce using rule 87 (const -> STRING .)
+    MENOR           reduce using rule 87 (const -> STRING .)
+    MENOR_IGUAL     reduce using rule 87 (const -> STRING .)
+    MAIOR_IGUAL     reduce using rule 87 (const -> STRING .)
+    MAIS            reduce using rule 87 (const -> STRING .)
+    MENOS           reduce using rule 87 (const -> STRING .)
+    OR              reduce using rule 87 (const -> STRING .)
+    THEN            reduce using rule 87 (const -> STRING .)
+    OF              reduce using rule 87 (const -> STRING .)
+    DO              reduce using rule 87 (const -> STRING .)
+    )               reduce using rule 87 (const -> STRING .)
+    VIRGULA         reduce using rule 87 (const -> STRING .)
+    ]               reduce using rule 87 (const -> STRING .)
+    PONTO_VIRGULA   reduce using rule 87 (const -> STRING .)
+    TO              reduce using rule 87 (const -> STRING .)
+    DOWNTO          reduce using rule 87 (const -> STRING .)
+    DOISPONTOS      reduce using rule 87 (const -> STRING .)
+
+
+state 67
+
+    (88) const -> NUM .
+
+    MULT            reduce using rule 88 (const -> NUM .)
+    DIVIDE          reduce using rule 88 (const -> NUM .)
+    AND             reduce using rule 88 (const -> NUM .)
+    DIV             reduce using rule 88 (const -> NUM .)
+    MOD             reduce using rule 88 (const -> NUM .)
+    IGUAL           reduce using rule 88 (const -> NUM .)
+    DIFF            reduce using rule 88 (const -> NUM .)
+    MAIOR           reduce using rule 88 (const -> NUM .)
+    MENOR           reduce using rule 88 (const -> NUM .)
+    MENOR_IGUAL     reduce using rule 88 (const -> NUM .)
+    MAIOR_IGUAL     reduce using rule 88 (const -> NUM .)
+    MAIS            reduce using rule 88 (const -> NUM .)
+    MENOS           reduce using rule 88 (const -> NUM .)
+    OR              reduce using rule 88 (const -> NUM .)
+    THEN            reduce using rule 88 (const -> NUM .)
+    OF              reduce using rule 88 (const -> NUM .)
+    DO              reduce using rule 88 (const -> NUM .)
+    )               reduce using rule 88 (const -> NUM .)
+    VIRGULA         reduce using rule 88 (const -> NUM .)
+    ]               reduce using rule 88 (const -> NUM .)
+    PONTO_VIRGULA   reduce using rule 88 (const -> NUM .)
+    TO              reduce using rule 88 (const -> NUM .)
+    DOWNTO          reduce using rule 88 (const -> NUM .)
+    DOISPONTOS      reduce using rule 88 (const -> NUM .)
+
+
+state 68
+
+    (89) var -> ID .
+    (90) var -> ID . [ expression ]
+    (98) func_call -> ID . ( Args )
+
+    MULT            reduce using rule 89 (var -> ID .)
+    DIVIDE          reduce using rule 89 (var -> ID .)
+    AND             reduce using rule 89 (var -> ID .)
+    DIV             reduce using rule 89 (var -> ID .)
+    MOD             reduce using rule 89 (var -> ID .)
+    IGUAL           reduce using rule 89 (var -> ID .)
+    DIFF            reduce using rule 89 (var -> ID .)
+    MAIOR           reduce using rule 89 (var -> ID .)
+    MENOR           reduce using rule 89 (var -> ID .)
+    MENOR_IGUAL     reduce using rule 89 (var -> ID .)
+    MAIOR_IGUAL     reduce using rule 89 (var -> ID .)
+    MAIS            reduce using rule 89 (var -> ID .)
+    MENOS           reduce using rule 89 (var -> ID .)
+    OR              reduce using rule 89 (var -> ID .)
+    THEN            reduce using rule 89 (var -> ID .)
+    OF              reduce using rule 89 (var -> ID .)
+    DO              reduce using rule 89 (var -> ID .)
+    ]               reduce using rule 89 (var -> ID .)
+    PONTO_VIRGULA   reduce using rule 89 (var -> ID .)
+    )               reduce using rule 89 (var -> ID .)
+    TO              reduce using rule 89 (var -> ID .)
+    DOWNTO          reduce using rule 89 (var -> ID .)
+    [               shift and go to state 46
+    (               shift and go to state 45
+
+
+state 69
+
+    (38) case -> CASE expression . OF case_branches END PONTO_VIRGULA
+    (39) case -> CASE expression . OF case_branches ELSE statements END PONTO_VIRGULA
+    (45) expression -> expression . OR and_expr
+
+    OF              shift and go to state 119
+    OR              shift and go to state 98
+
+
+state 70
+
+    (75) while -> WHILE expression . DO compound_statement PONTO_VIRGULA
+    (45) expression -> expression . OR and_expr
+
+    DO              shift and go to state 120
+    OR              shift and go to state 98
+
+
+state 71
+
+    (76) while -> WHILE ( . expression ) DO compound_statement PONTO_VIRGULA
+    (73) factor -> ( . expression )
+    (45) expression -> . expression OR and_expr
+    (46) expression -> . and_expr
+    (47) and_expr -> . and_expr AND not_expr
+    (48) and_expr -> . not_expr
+    (49) not_expr -> . NOT not_expr
+    (50) not_expr -> . rel_expr
+    (51) rel_expr -> . arith_expr rel_op arith_expr
+    (52) rel_expr -> . arith_expr
+    (59) arith_expr -> . arith_expr add_op term
+    (60) arith_expr -> . term
+    (64) term -> . term mul_op factor
+    (65) term -> . factor
+    (71) factor -> . const
+    (72) factor -> . var
+    (73) factor -> . ( expression )
+    (74) factor -> . func_call
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+
+    NOT             shift and go to state 57
+    (               shift and go to state 64
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 68
+    BUILTIN_FUNC    shift and go to state 40
+
+    expression                     shift and go to state 121
+    and_expr                       shift and go to state 55
+    not_expr                       shift and go to state 56
+    rel_expr                       shift and go to state 58
+    arith_expr                     shift and go to state 59
+    term                           shift and go to state 60
+    factor                         shift and go to state 61
+    const                          shift and go to state 62
+    var                            shift and go to state 63
+    func_call                      shift and go to state 65
+
+state 72
+
+    (77) for -> FOR ID . ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA
+    (78) for -> FOR ID . ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA
+
+    ASSIGN          shift and go to state 122
+
+
+state 73
+
+    (81) function -> FUNCTION ID . ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+
+    (               shift and go to state 123
+
+
+state 74
+
+    (80) procedure -> PROCEDURE ID . ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+
+    (               shift and go to state 124
+
+
+state 75
+
+    (99) func_call -> BUILTIN_FUNC ( . Args )
+    (29) Args -> . Args VIRGULA Arg
+    (30) Args -> . Arg
+    (31) Arg -> . const
+    (32) Arg -> . var
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 85
+
+    Args                           shift and go to state 125
+    Arg                            shift and go to state 87
+    const                          shift and go to state 88
+    var                            shift and go to state 89
+
+state 76
+
+    (6) var_declaration_list -> var_declaration_list PONTO_VIRGULA var_declaration .
+
+    PONTO_VIRGULA   reduce using rule 6 (var_declaration_list -> var_declaration_list PONTO_VIRGULA var_declaration .)
+    ID              reduce using rule 6 (var_declaration_list -> var_declaration_list PONTO_VIRGULA var_declaration .)
+    BEGIN           reduce using rule 6 (var_declaration_list -> var_declaration_list PONTO_VIRGULA var_declaration .)
+
+
+state 77
+
+    (7) var_declaration -> id_list DOISPONTOS type . PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 126
+
+
+state 78
+
+    (91) type -> INTEGER .
+
+    PONTO_VIRGULA   reduce using rule 91 (type -> INTEGER .)
+    )               reduce using rule 91 (type -> INTEGER .)
+
+
+state 79
+
+    (92) type -> REAL .
+
+    PONTO_VIRGULA   reduce using rule 92 (type -> REAL .)
+    )               reduce using rule 92 (type -> REAL .)
+
+
+state 80
+
+    (93) type -> STRING_TYPE .
+
+    PONTO_VIRGULA   reduce using rule 93 (type -> STRING_TYPE .)
+    )               reduce using rule 93 (type -> STRING_TYPE .)
+
+
+state 81
+
+    (94) type -> BOOLEAN .
+
+    PONTO_VIRGULA   reduce using rule 94 (type -> BOOLEAN .)
+    )               reduce using rule 94 (type -> BOOLEAN .)
+
+
+state 82
+
+    (95) type -> array_type .
+
+    PONTO_VIRGULA   reduce using rule 95 (type -> array_type .)
+    )               reduce using rule 95 (type -> array_type .)
+
+
+state 83
+
+    (96) array_type -> ARRAY . [ NUM DOUBLEPOINTS NUM ] OF type
+    (97) array_type -> ARRAY . [ NUM ] OF type
+
+    [               shift and go to state 127
+
+
+state 84
+
+    (9) id_list -> id_list VIRGULA ID .
+
+    DOISPONTOS      reduce using rule 9 (id_list -> id_list VIRGULA ID .)
+    VIRGULA         reduce using rule 9 (id_list -> id_list VIRGULA ID .)
+
+
+state 85
+
+    (89) var -> ID .
+    (90) var -> ID . [ expression ]
+
+    )               reduce using rule 89 (var -> ID .)
+    VIRGULA         reduce using rule 89 (var -> ID .)
+    [               shift and go to state 46
+
+
+state 86
+
+    (98) func_call -> ID ( Args . )
+    (29) Args -> Args . VIRGULA Arg
+
+    )               shift and go to state 128
+    VIRGULA         shift and go to state 129
+
+
+state 87
+
+    (30) Args -> Arg .
+
+    )               reduce using rule 30 (Args -> Arg .)
+    VIRGULA         reduce using rule 30 (Args -> Arg .)
+
+
+state 88
+
+    (31) Arg -> const .
+
+    )               reduce using rule 31 (Arg -> const .)
+    VIRGULA         reduce using rule 31 (Arg -> const .)
+
+
+state 89
+
+    (32) Arg -> var .
+
+    )               reduce using rule 32 (Arg -> var .)
+    VIRGULA         reduce using rule 32 (Arg -> var .)
+
+
+state 90
+
+    (90) var -> ID [ expression . ]
+    (45) expression -> expression . OR and_expr
+
+    ]               shift and go to state 130
+    OR              shift and go to state 98
+
+
+state 91
+
+    (1) program -> PROGRAM ID PONTO_VIRGULA var_declaration_part BEGIN body END PONTO .
+
+    $end            reduce using rule 1 (program -> PROGRAM ID PONTO_VIRGULA var_declaration_part BEGIN body END PONTO .)
+
+
+state 92
+
+    (33) assign -> var ASSIGN expression . PONTO_VIRGULA
+    (45) expression -> expression . OR and_expr
+
+    PONTO_VIRGULA   shift and go to state 131
+    OR              shift and go to state 98
+
+
+state 93
+
+    (25) writeln -> WRITELN ( Args . ) PONTO_VIRGULA
+    (29) Args -> Args . VIRGULA Arg
+
+    )               shift and go to state 132
+    VIRGULA         shift and go to state 129
+
+
+state 94
+
+    (26) write -> WRITE ( Args . ) PONTO_VIRGULA
+    (29) Args -> Args . VIRGULA Arg
+
+    )               shift and go to state 133
+    VIRGULA         shift and go to state 129
+
+
+state 95
+
+    (27) readln -> READLN ( Args . ) PONTO_VIRGULA
+    (29) Args -> Args . VIRGULA Arg
+
+    )               shift and go to state 134
+    VIRGULA         shift and go to state 129
+
+
+state 96
+
+    (28) read -> READ ( Args . ) PONTO_VIRGULA
+    (29) Args -> Args . VIRGULA Arg
+
+    )               shift and go to state 135
+    VIRGULA         shift and go to state 129
+
+
+state 97
+
+    (34) if -> IF expression THEN . statement
+    (35) if -> IF expression THEN . statement ELSE statement
+    (36) if -> IF expression THEN . compound_statement
+    (37) if -> IF expression THEN . compound_statement ELSE compound_statement
+    (13) statement -> . assign
+    (14) statement -> . writeln
+    (15) statement -> . write
+    (16) statement -> . readln
+    (17) statement -> . read
+    (18) statement -> . if
+    (19) statement -> . case
+    (20) statement -> . while
+    (21) statement -> . for
+    (22) statement -> . function
+    (23) statement -> . procedure
+    (24) statement -> . func_call
+    (79) compound_statement -> . BEGIN statements END
+    (33) assign -> . var ASSIGN expression PONTO_VIRGULA
+    (25) writeln -> . WRITELN ( Args ) PONTO_VIRGULA
+    (26) write -> . WRITE ( Args ) PONTO_VIRGULA
+    (27) readln -> . READLN ( Args ) PONTO_VIRGULA
+    (28) read -> . READ ( Args ) PONTO_VIRGULA
+    (34) if -> . IF expression THEN statement
+    (35) if -> . IF expression THEN statement ELSE statement
+    (36) if -> . IF expression THEN compound_statement
+    (37) if -> . IF expression THEN compound_statement ELSE compound_statement
+    (38) case -> . CASE expression OF case_branches END PONTO_VIRGULA
+    (39) case -> . CASE expression OF case_branches ELSE statements END PONTO_VIRGULA
+    (75) while -> . WHILE expression DO compound_statement PONTO_VIRGULA
+    (76) while -> . WHILE ( expression ) DO compound_statement PONTO_VIRGULA
+    (77) for -> . FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA
+    (78) for -> . FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA
+    (81) function -> . FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (80) procedure -> . PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+
+    BEGIN           shift and go to state 138
+    WRITELN         shift and go to state 30
+    WRITE           shift and go to state 31
+    READLN          shift and go to state 32
+    READ            shift and go to state 33
+    IF              shift and go to state 34
+    CASE            shift and go to state 35
+    WHILE           shift and go to state 36
+    FOR             shift and go to state 37
+    FUNCTION        shift and go to state 38
+    PROCEDURE       shift and go to state 39
+    ID              shift and go to state 13
+    BUILTIN_FUNC    shift and go to state 40
+
+    statement                      shift and go to state 136
+    compound_statement             shift and go to state 137
+    assign                         shift and go to state 17
+    writeln                        shift and go to state 18
+    write                          shift and go to state 19
+    readln                         shift and go to state 20
+    read                           shift and go to state 21
+    if                             shift and go to state 22
+    case                           shift and go to state 23
+    while                          shift and go to state 24
+    for                            shift and go to state 25
+    function                       shift and go to state 26
+    procedure                      shift and go to state 27
+    func_call                      shift and go to state 28
+    var                            shift and go to state 29
+
+state 98
+
+    (45) expression -> expression OR . and_expr
+    (47) and_expr -> . and_expr AND not_expr
+    (48) and_expr -> . not_expr
+    (49) not_expr -> . NOT not_expr
+    (50) not_expr -> . rel_expr
+    (51) rel_expr -> . arith_expr rel_op arith_expr
+    (52) rel_expr -> . arith_expr
+    (59) arith_expr -> . arith_expr add_op term
+    (60) arith_expr -> . term
+    (64) term -> . term mul_op factor
+    (65) term -> . factor
+    (71) factor -> . const
+    (72) factor -> . var
+    (73) factor -> . ( expression )
+    (74) factor -> . func_call
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+
+    NOT             shift and go to state 57
+    (               shift and go to state 64
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 68
+    BUILTIN_FUNC    shift and go to state 40
+
+    and_expr                       shift and go to state 139
+    not_expr                       shift and go to state 56
+    rel_expr                       shift and go to state 58
+    arith_expr                     shift and go to state 59
+    term                           shift and go to state 60
+    factor                         shift and go to state 61
+    const                          shift and go to state 62
+    var                            shift and go to state 63
+    func_call                      shift and go to state 65
+
+state 99
+
+    (47) and_expr -> and_expr AND . not_expr
+    (49) not_expr -> . NOT not_expr
+    (50) not_expr -> . rel_expr
+    (51) rel_expr -> . arith_expr rel_op arith_expr
+    (52) rel_expr -> . arith_expr
+    (59) arith_expr -> . arith_expr add_op term
+    (60) arith_expr -> . term
+    (64) term -> . term mul_op factor
+    (65) term -> . factor
+    (71) factor -> . const
+    (72) factor -> . var
+    (73) factor -> . ( expression )
+    (74) factor -> . func_call
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+
+    NOT             shift and go to state 57
+    (               shift and go to state 64
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 68
+    BUILTIN_FUNC    shift and go to state 40
+
+    not_expr                       shift and go to state 140
+    rel_expr                       shift and go to state 58
+    arith_expr                     shift and go to state 59
+    term                           shift and go to state 60
+    factor                         shift and go to state 61
+    const                          shift and go to state 62
+    var                            shift and go to state 63
+    func_call                      shift and go to state 65
+
+state 100
+
+    (49) not_expr -> NOT not_expr .
+
+    AND             reduce using rule 49 (not_expr -> NOT not_expr .)
+    THEN            reduce using rule 49 (not_expr -> NOT not_expr .)
+    OR              reduce using rule 49 (not_expr -> NOT not_expr .)
+    OF              reduce using rule 49 (not_expr -> NOT not_expr .)
+    DO              reduce using rule 49 (not_expr -> NOT not_expr .)
+    ]               reduce using rule 49 (not_expr -> NOT not_expr .)
+    PONTO_VIRGULA   reduce using rule 49 (not_expr -> NOT not_expr .)
+    )               reduce using rule 49 (not_expr -> NOT not_expr .)
+    TO              reduce using rule 49 (not_expr -> NOT not_expr .)
+    DOWNTO          reduce using rule 49 (not_expr -> NOT not_expr .)
+
+
+state 101
+
+    (51) rel_expr -> arith_expr rel_op . arith_expr
+    (59) arith_expr -> . arith_expr add_op term
+    (60) arith_expr -> . term
+    (64) term -> . term mul_op factor
+    (65) term -> . factor
+    (71) factor -> . const
+    (72) factor -> . var
+    (73) factor -> . ( expression )
+    (74) factor -> . func_call
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+
+    (               shift and go to state 64
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 68
+    BUILTIN_FUNC    shift and go to state 40
+
+    arith_expr                     shift and go to state 141
+    term                           shift and go to state 60
+    factor                         shift and go to state 61
+    const                          shift and go to state 62
+    var                            shift and go to state 63
+    func_call                      shift and go to state 65
+
+state 102
+
+    (59) arith_expr -> arith_expr add_op . term
+    (64) term -> . term mul_op factor
+    (65) term -> . factor
+    (71) factor -> . const
+    (72) factor -> . var
+    (73) factor -> . ( expression )
+    (74) factor -> . func_call
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+
+    (               shift and go to state 64
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 68
+    BUILTIN_FUNC    shift and go to state 40
+
+    term                           shift and go to state 142
+    factor                         shift and go to state 61
+    const                          shift and go to state 62
+    var                            shift and go to state 63
+    func_call                      shift and go to state 65
+
+state 103
+
+    (53) rel_op -> IGUAL .
+
+    (               reduce using rule 53 (rel_op -> IGUAL .)
+    STRING          reduce using rule 53 (rel_op -> IGUAL .)
+    NUM             reduce using rule 53 (rel_op -> IGUAL .)
+    ID              reduce using rule 53 (rel_op -> IGUAL .)
+    BUILTIN_FUNC    reduce using rule 53 (rel_op -> IGUAL .)
+
+
+state 104
+
+    (54) rel_op -> DIFF .
+
+    (               reduce using rule 54 (rel_op -> DIFF .)
+    STRING          reduce using rule 54 (rel_op -> DIFF .)
+    NUM             reduce using rule 54 (rel_op -> DIFF .)
+    ID              reduce using rule 54 (rel_op -> DIFF .)
+    BUILTIN_FUNC    reduce using rule 54 (rel_op -> DIFF .)
+
+
+state 105
+
+    (55) rel_op -> MAIOR .
+
+    (               reduce using rule 55 (rel_op -> MAIOR .)
+    STRING          reduce using rule 55 (rel_op -> MAIOR .)
+    NUM             reduce using rule 55 (rel_op -> MAIOR .)
+    ID              reduce using rule 55 (rel_op -> MAIOR .)
+    BUILTIN_FUNC    reduce using rule 55 (rel_op -> MAIOR .)
+
+
+state 106
+
+    (56) rel_op -> MENOR .
+
+    (               reduce using rule 56 (rel_op -> MENOR .)
+    STRING          reduce using rule 56 (rel_op -> MENOR .)
+    NUM             reduce using rule 56 (rel_op -> MENOR .)
+    ID              reduce using rule 56 (rel_op -> MENOR .)
+    BUILTIN_FUNC    reduce using rule 56 (rel_op -> MENOR .)
+
+
+state 107
+
+    (57) rel_op -> MENOR_IGUAL .
+
+    (               reduce using rule 57 (rel_op -> MENOR_IGUAL .)
+    STRING          reduce using rule 57 (rel_op -> MENOR_IGUAL .)
+    NUM             reduce using rule 57 (rel_op -> MENOR_IGUAL .)
+    ID              reduce using rule 57 (rel_op -> MENOR_IGUAL .)
+    BUILTIN_FUNC    reduce using rule 57 (rel_op -> MENOR_IGUAL .)
+
+
+state 108
+
+    (58) rel_op -> MAIOR_IGUAL .
+
+    (               reduce using rule 58 (rel_op -> MAIOR_IGUAL .)
+    STRING          reduce using rule 58 (rel_op -> MAIOR_IGUAL .)
+    NUM             reduce using rule 58 (rel_op -> MAIOR_IGUAL .)
+    ID              reduce using rule 58 (rel_op -> MAIOR_IGUAL .)
+    BUILTIN_FUNC    reduce using rule 58 (rel_op -> MAIOR_IGUAL .)
+
+
+state 109
+
+    (61) add_op -> MAIS .
+
+    (               reduce using rule 61 (add_op -> MAIS .)
+    STRING          reduce using rule 61 (add_op -> MAIS .)
+    NUM             reduce using rule 61 (add_op -> MAIS .)
+    ID              reduce using rule 61 (add_op -> MAIS .)
+    BUILTIN_FUNC    reduce using rule 61 (add_op -> MAIS .)
+
+
+state 110
+
+    (62) add_op -> MENOS .
+
+    (               reduce using rule 62 (add_op -> MENOS .)
+    STRING          reduce using rule 62 (add_op -> MENOS .)
+    NUM             reduce using rule 62 (add_op -> MENOS .)
+    ID              reduce using rule 62 (add_op -> MENOS .)
+    BUILTIN_FUNC    reduce using rule 62 (add_op -> MENOS .)
+
+
+state 111
+
+    (63) add_op -> OR .
+
+    (               reduce using rule 63 (add_op -> OR .)
+    STRING          reduce using rule 63 (add_op -> OR .)
+    NUM             reduce using rule 63 (add_op -> OR .)
+    ID              reduce using rule 63 (add_op -> OR .)
+    BUILTIN_FUNC    reduce using rule 63 (add_op -> OR .)
+
+
+state 112
+
+    (64) term -> term mul_op . factor
+    (71) factor -> . const
+    (72) factor -> . var
+    (73) factor -> . ( expression )
+    (74) factor -> . func_call
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+
+    (               shift and go to state 64
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 68
+    BUILTIN_FUNC    shift and go to state 40
+
+    factor                         shift and go to state 143
+    const                          shift and go to state 62
+    var                            shift and go to state 63
+    func_call                      shift and go to state 65
+
+state 113
+
+    (66) mul_op -> MULT .
+
+    (               reduce using rule 66 (mul_op -> MULT .)
+    STRING          reduce using rule 66 (mul_op -> MULT .)
+    NUM             reduce using rule 66 (mul_op -> MULT .)
+    ID              reduce using rule 66 (mul_op -> MULT .)
+    BUILTIN_FUNC    reduce using rule 66 (mul_op -> MULT .)
+
+
+state 114
+
+    (67) mul_op -> DIVIDE .
+
+    (               reduce using rule 67 (mul_op -> DIVIDE .)
+    STRING          reduce using rule 67 (mul_op -> DIVIDE .)
+    NUM             reduce using rule 67 (mul_op -> DIVIDE .)
+    ID              reduce using rule 67 (mul_op -> DIVIDE .)
+    BUILTIN_FUNC    reduce using rule 67 (mul_op -> DIVIDE .)
+
+
+state 115
+
+    (68) mul_op -> AND .
+
+    (               reduce using rule 68 (mul_op -> AND .)
+    STRING          reduce using rule 68 (mul_op -> AND .)
+    NUM             reduce using rule 68 (mul_op -> AND .)
+    ID              reduce using rule 68 (mul_op -> AND .)
+    BUILTIN_FUNC    reduce using rule 68 (mul_op -> AND .)
+
+
+state 116
+
+    (69) mul_op -> DIV .
+
+    (               reduce using rule 69 (mul_op -> DIV .)
+    STRING          reduce using rule 69 (mul_op -> DIV .)
+    NUM             reduce using rule 69 (mul_op -> DIV .)
+    ID              reduce using rule 69 (mul_op -> DIV .)
+    BUILTIN_FUNC    reduce using rule 69 (mul_op -> DIV .)
+
+
+state 117
+
+    (70) mul_op -> MOD .
+
+    (               reduce using rule 70 (mul_op -> MOD .)
+    STRING          reduce using rule 70 (mul_op -> MOD .)
+    NUM             reduce using rule 70 (mul_op -> MOD .)
+    ID              reduce using rule 70 (mul_op -> MOD .)
+    BUILTIN_FUNC    reduce using rule 70 (mul_op -> MOD .)
+
+
+state 118
+
+    (73) factor -> ( expression . )
+    (45) expression -> expression . OR and_expr
+
+    )               shift and go to state 144
+    OR              shift and go to state 98
+
+
+state 119
+
+    (38) case -> CASE expression OF . case_branches END PONTO_VIRGULA
+    (39) case -> CASE expression OF . case_branches ELSE statements END PONTO_VIRGULA
+    (40) case_branches -> . case_branches case_branch
+    (41) case_branches -> . case_branch
+    (42) case_branch -> . case_labels DOISPONTOS statement
+    (43) case_labels -> . case_labels VIRGULA const
+    (44) case_labels -> . const
+    (87) const -> . STRING
+    (88) const -> . NUM
+
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+
+    case_branches                  shift and go to state 145
+    case_branch                    shift and go to state 146
+    case_labels                    shift and go to state 147
+    const                          shift and go to state 148
+
+state 120
+
+    (75) while -> WHILE expression DO . compound_statement PONTO_VIRGULA
+    (79) compound_statement -> . BEGIN statements END
+
+    BEGIN           shift and go to state 138
+
+    compound_statement             shift and go to state 149
+
+state 121
+
+    (76) while -> WHILE ( expression . ) DO compound_statement PONTO_VIRGULA
+    (73) factor -> ( expression . )
+    (45) expression -> expression . OR and_expr
+
+    )               shift and go to state 150
+    OR              shift and go to state 98
+
+
+state 122
+
+    (77) for -> FOR ID ASSIGN . expression TO expression DO compound_statement PONTO_VIRGULA
+    (78) for -> FOR ID ASSIGN . expression DOWNTO expression DO compound_statement PONTO_VIRGULA
+    (45) expression -> . expression OR and_expr
+    (46) expression -> . and_expr
+    (47) and_expr -> . and_expr AND not_expr
+    (48) and_expr -> . not_expr
+    (49) not_expr -> . NOT not_expr
+    (50) not_expr -> . rel_expr
+    (51) rel_expr -> . arith_expr rel_op arith_expr
+    (52) rel_expr -> . arith_expr
+    (59) arith_expr -> . arith_expr add_op term
+    (60) arith_expr -> . term
+    (64) term -> . term mul_op factor
+    (65) term -> . factor
+    (71) factor -> . const
+    (72) factor -> . var
+    (73) factor -> . ( expression )
+    (74) factor -> . func_call
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+
+    NOT             shift and go to state 57
+    (               shift and go to state 64
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 68
+    BUILTIN_FUNC    shift and go to state 40
+
+    expression                     shift and go to state 151
+    and_expr                       shift and go to state 55
+    not_expr                       shift and go to state 56
+    rel_expr                       shift and go to state 58
+    arith_expr                     shift and go to state 59
+    term                           shift and go to state 60
+    factor                         shift and go to state 61
+    const                          shift and go to state 62
+    var                            shift and go to state 63
+    func_call                      shift and go to state 65
+
+state 123
+
+    (81) function -> FUNCTION ID ( . params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (82) params -> . param_list
+    (83) params -> . empty
+    (84) param_list -> . param
+    (85) param_list -> . param_list PONTO_VIRGULA param
+    (100) empty -> .
+    (86) param -> . id_list DOISPONTOS type
+    (8) id_list -> . ID
+    (9) id_list -> . id_list VIRGULA ID
+
+    )               reduce using rule 100 (empty -> .)
+    ID              shift and go to state 12
+
+    params                         shift and go to state 152
+    param_list                     shift and go to state 153
+    empty                          shift and go to state 154
+    param                          shift and go to state 155
+    id_list                        shift and go to state 156
+
+state 124
+
+    (80) procedure -> PROCEDURE ID ( . params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (82) params -> . param_list
+    (83) params -> . empty
+    (84) param_list -> . param
+    (85) param_list -> . param_list PONTO_VIRGULA param
+    (100) empty -> .
+    (86) param -> . id_list DOISPONTOS type
+    (8) id_list -> . ID
+    (9) id_list -> . id_list VIRGULA ID
+
+    )               reduce using rule 100 (empty -> .)
+    ID              shift and go to state 12
+
+    params                         shift and go to state 157
+    param_list                     shift and go to state 153
+    empty                          shift and go to state 154
+    param                          shift and go to state 155
+    id_list                        shift and go to state 156
+
+state 125
+
+    (99) func_call -> BUILTIN_FUNC ( Args . )
+    (29) Args -> Args . VIRGULA Arg
+
+    )               shift and go to state 158
+    VIRGULA         shift and go to state 129
+
+
+state 126
+
+    (7) var_declaration -> id_list DOISPONTOS type PONTO_VIRGULA .
+
+    PONTO_VIRGULA   reduce using rule 7 (var_declaration -> id_list DOISPONTOS type PONTO_VIRGULA .)
+    ID              reduce using rule 7 (var_declaration -> id_list DOISPONTOS type PONTO_VIRGULA .)
+    BEGIN           reduce using rule 7 (var_declaration -> id_list DOISPONTOS type PONTO_VIRGULA .)
+
+
+state 127
+
+    (96) array_type -> ARRAY [ . NUM DOUBLEPOINTS NUM ] OF type
+    (97) array_type -> ARRAY [ . NUM ] OF type
+
+    NUM             shift and go to state 159
+
+
+state 128
+
+    (98) func_call -> ID ( Args ) .
+
+    WRITELN         reduce using rule 98 (func_call -> ID ( Args ) .)
+    WRITE           reduce using rule 98 (func_call -> ID ( Args ) .)
+    READLN          reduce using rule 98 (func_call -> ID ( Args ) .)
+    READ            reduce using rule 98 (func_call -> ID ( Args ) .)
+    IF              reduce using rule 98 (func_call -> ID ( Args ) .)
+    CASE            reduce using rule 98 (func_call -> ID ( Args ) .)
+    WHILE           reduce using rule 98 (func_call -> ID ( Args ) .)
+    FOR             reduce using rule 98 (func_call -> ID ( Args ) .)
+    FUNCTION        reduce using rule 98 (func_call -> ID ( Args ) .)
+    PROCEDURE       reduce using rule 98 (func_call -> ID ( Args ) .)
+    ID              reduce using rule 98 (func_call -> ID ( Args ) .)
+    BUILTIN_FUNC    reduce using rule 98 (func_call -> ID ( Args ) .)
+    END             reduce using rule 98 (func_call -> ID ( Args ) .)
+    MULT            reduce using rule 98 (func_call -> ID ( Args ) .)
+    DIVIDE          reduce using rule 98 (func_call -> ID ( Args ) .)
+    AND             reduce using rule 98 (func_call -> ID ( Args ) .)
+    DIV             reduce using rule 98 (func_call -> ID ( Args ) .)
+    MOD             reduce using rule 98 (func_call -> ID ( Args ) .)
+    IGUAL           reduce using rule 98 (func_call -> ID ( Args ) .)
+    DIFF            reduce using rule 98 (func_call -> ID ( Args ) .)
+    MAIOR           reduce using rule 98 (func_call -> ID ( Args ) .)
+    MENOR           reduce using rule 98 (func_call -> ID ( Args ) .)
+    MENOR_IGUAL     reduce using rule 98 (func_call -> ID ( Args ) .)
+    MAIOR_IGUAL     reduce using rule 98 (func_call -> ID ( Args ) .)
+    MAIS            reduce using rule 98 (func_call -> ID ( Args ) .)
+    MENOS           reduce using rule 98 (func_call -> ID ( Args ) .)
+    OR              reduce using rule 98 (func_call -> ID ( Args ) .)
+    THEN            reduce using rule 98 (func_call -> ID ( Args ) .)
+    OF              reduce using rule 98 (func_call -> ID ( Args ) .)
+    DO              reduce using rule 98 (func_call -> ID ( Args ) .)
+    ]               reduce using rule 98 (func_call -> ID ( Args ) .)
+    PONTO_VIRGULA   reduce using rule 98 (func_call -> ID ( Args ) .)
+    )               reduce using rule 98 (func_call -> ID ( Args ) .)
+    TO              reduce using rule 98 (func_call -> ID ( Args ) .)
+    DOWNTO          reduce using rule 98 (func_call -> ID ( Args ) .)
+    ELSE            reduce using rule 98 (func_call -> ID ( Args ) .)
+    STRING          reduce using rule 98 (func_call -> ID ( Args ) .)
+    NUM             reduce using rule 98 (func_call -> ID ( Args ) .)
+
+
+state 129
+
+    (29) Args -> Args VIRGULA . Arg
+    (31) Arg -> . const
+    (32) Arg -> . var
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 85
+
+    Arg                            shift and go to state 160
+    const                          shift and go to state 88
+    var                            shift and go to state 89
+
+state 130
+
+    (90) var -> ID [ expression ] .
+
+    ASSIGN          reduce using rule 90 (var -> ID [ expression ] .)
+    MULT            reduce using rule 90 (var -> ID [ expression ] .)
+    DIVIDE          reduce using rule 90 (var -> ID [ expression ] .)
+    AND             reduce using rule 90 (var -> ID [ expression ] .)
+    DIV             reduce using rule 90 (var -> ID [ expression ] .)
+    MOD             reduce using rule 90 (var -> ID [ expression ] .)
+    IGUAL           reduce using rule 90 (var -> ID [ expression ] .)
+    DIFF            reduce using rule 90 (var -> ID [ expression ] .)
+    MAIOR           reduce using rule 90 (var -> ID [ expression ] .)
+    MENOR           reduce using rule 90 (var -> ID [ expression ] .)
+    MENOR_IGUAL     reduce using rule 90 (var -> ID [ expression ] .)
+    MAIOR_IGUAL     reduce using rule 90 (var -> ID [ expression ] .)
+    MAIS            reduce using rule 90 (var -> ID [ expression ] .)
+    MENOS           reduce using rule 90 (var -> ID [ expression ] .)
+    OR              reduce using rule 90 (var -> ID [ expression ] .)
+    THEN            reduce using rule 90 (var -> ID [ expression ] .)
+    OF              reduce using rule 90 (var -> ID [ expression ] .)
+    DO              reduce using rule 90 (var -> ID [ expression ] .)
+    )               reduce using rule 90 (var -> ID [ expression ] .)
+    VIRGULA         reduce using rule 90 (var -> ID [ expression ] .)
+    ]               reduce using rule 90 (var -> ID [ expression ] .)
+    PONTO_VIRGULA   reduce using rule 90 (var -> ID [ expression ] .)
+    TO              reduce using rule 90 (var -> ID [ expression ] .)
+    DOWNTO          reduce using rule 90 (var -> ID [ expression ] .)
+
+
+state 131
+
+    (33) assign -> var ASSIGN expression PONTO_VIRGULA .
+
+    WRITELN         reduce using rule 33 (assign -> var ASSIGN expression PONTO_VIRGULA .)
+    WRITE           reduce using rule 33 (assign -> var ASSIGN expression PONTO_VIRGULA .)
+    READLN          reduce using rule 33 (assign -> var ASSIGN expression PONTO_VIRGULA .)
+    READ            reduce using rule 33 (assign -> var ASSIGN expression PONTO_VIRGULA .)
+    IF              reduce using rule 33 (assign -> var ASSIGN expression PONTO_VIRGULA .)
+    CASE            reduce using rule 33 (assign -> var ASSIGN expression PONTO_VIRGULA .)
+    WHILE           reduce using rule 33 (assign -> var ASSIGN expression PONTO_VIRGULA .)
+    FOR             reduce using rule 33 (assign -> var ASSIGN expression PONTO_VIRGULA .)
+    FUNCTION        reduce using rule 33 (assign -> var ASSIGN expression PONTO_VIRGULA .)
+    PROCEDURE       reduce using rule 33 (assign -> var ASSIGN expression PONTO_VIRGULA .)
+    ID              reduce using rule 33 (assign -> var ASSIGN expression PONTO_VIRGULA .)
+    BUILTIN_FUNC    reduce using rule 33 (assign -> var ASSIGN expression PONTO_VIRGULA .)
+    END             reduce using rule 33 (assign -> var ASSIGN expression PONTO_VIRGULA .)
+    ELSE            reduce using rule 33 (assign -> var ASSIGN expression PONTO_VIRGULA .)
+    STRING          reduce using rule 33 (assign -> var ASSIGN expression PONTO_VIRGULA .)
+    NUM             reduce using rule 33 (assign -> var ASSIGN expression PONTO_VIRGULA .)
+
+
+state 132
+
+    (25) writeln -> WRITELN ( Args ) . PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 161
+
+
+state 133
+
+    (26) write -> WRITE ( Args ) . PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 162
+
+
+state 134
+
+    (27) readln -> READLN ( Args ) . PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 163
+
+
+state 135
+
+    (28) read -> READ ( Args ) . PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 164
+
+
+state 136
+
+    (34) if -> IF expression THEN statement .
+    (35) if -> IF expression THEN statement . ELSE statement
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    WRITELN         reduce using rule 34 (if -> IF expression THEN statement .)
+    WRITE           reduce using rule 34 (if -> IF expression THEN statement .)
+    READLN          reduce using rule 34 (if -> IF expression THEN statement .)
+    READ            reduce using rule 34 (if -> IF expression THEN statement .)
+    IF              reduce using rule 34 (if -> IF expression THEN statement .)
+    CASE            reduce using rule 34 (if -> IF expression THEN statement .)
+    WHILE           reduce using rule 34 (if -> IF expression THEN statement .)
+    FOR             reduce using rule 34 (if -> IF expression THEN statement .)
+    FUNCTION        reduce using rule 34 (if -> IF expression THEN statement .)
+    PROCEDURE       reduce using rule 34 (if -> IF expression THEN statement .)
+    ID              reduce using rule 34 (if -> IF expression THEN statement .)
+    BUILTIN_FUNC    reduce using rule 34 (if -> IF expression THEN statement .)
+    END             reduce using rule 34 (if -> IF expression THEN statement .)
+    STRING          reduce using rule 34 (if -> IF expression THEN statement .)
+    NUM             reduce using rule 34 (if -> IF expression THEN statement .)
+    ELSE            shift and go to state 165
+
+  ! ELSE            [ reduce using rule 34 (if -> IF expression THEN statement .) ]
+
+
+state 137
+
+    (36) if -> IF expression THEN compound_statement .
+    (37) if -> IF expression THEN compound_statement . ELSE compound_statement
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    WRITELN         reduce using rule 36 (if -> IF expression THEN compound_statement .)
+    WRITE           reduce using rule 36 (if -> IF expression THEN compound_statement .)
+    READLN          reduce using rule 36 (if -> IF expression THEN compound_statement .)
+    READ            reduce using rule 36 (if -> IF expression THEN compound_statement .)
+    IF              reduce using rule 36 (if -> IF expression THEN compound_statement .)
+    CASE            reduce using rule 36 (if -> IF expression THEN compound_statement .)
+    WHILE           reduce using rule 36 (if -> IF expression THEN compound_statement .)
+    FOR             reduce using rule 36 (if -> IF expression THEN compound_statement .)
+    FUNCTION        reduce using rule 36 (if -> IF expression THEN compound_statement .)
+    PROCEDURE       reduce using rule 36 (if -> IF expression THEN compound_statement .)
+    ID              reduce using rule 36 (if -> IF expression THEN compound_statement .)
+    BUILTIN_FUNC    reduce using rule 36 (if -> IF expression THEN compound_statement .)
+    END             reduce using rule 36 (if -> IF expression THEN compound_statement .)
+    STRING          reduce using rule 36 (if -> IF expression THEN compound_statement .)
+    NUM             reduce using rule 36 (if -> IF expression THEN compound_statement .)
+    ELSE            shift and go to state 166
+
+  ! ELSE            [ reduce using rule 36 (if -> IF expression THEN compound_statement .) ]
+
+
+state 138
+
+    (79) compound_statement -> BEGIN . statements END
+    (11) statements -> . statements statement
+    (12) statements -> . statement
+    (13) statement -> . assign
+    (14) statement -> . writeln
+    (15) statement -> . write
+    (16) statement -> . readln
+    (17) statement -> . read
+    (18) statement -> . if
+    (19) statement -> . case
+    (20) statement -> . while
+    (21) statement -> . for
+    (22) statement -> . function
+    (23) statement -> . procedure
+    (24) statement -> . func_call
+    (33) assign -> . var ASSIGN expression PONTO_VIRGULA
+    (25) writeln -> . WRITELN ( Args ) PONTO_VIRGULA
+    (26) write -> . WRITE ( Args ) PONTO_VIRGULA
+    (27) readln -> . READLN ( Args ) PONTO_VIRGULA
+    (28) read -> . READ ( Args ) PONTO_VIRGULA
+    (34) if -> . IF expression THEN statement
+    (35) if -> . IF expression THEN statement ELSE statement
+    (36) if -> . IF expression THEN compound_statement
+    (37) if -> . IF expression THEN compound_statement ELSE compound_statement
+    (38) case -> . CASE expression OF case_branches END PONTO_VIRGULA
+    (39) case -> . CASE expression OF case_branches ELSE statements END PONTO_VIRGULA
+    (75) while -> . WHILE expression DO compound_statement PONTO_VIRGULA
+    (76) while -> . WHILE ( expression ) DO compound_statement PONTO_VIRGULA
+    (77) for -> . FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA
+    (78) for -> . FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA
+    (81) function -> . FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (80) procedure -> . PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+
+    WRITELN         shift and go to state 30
+    WRITE           shift and go to state 31
+    READLN          shift and go to state 32
+    READ            shift and go to state 33
+    IF              shift and go to state 34
+    CASE            shift and go to state 35
+    WHILE           shift and go to state 36
+    FOR             shift and go to state 37
+    FUNCTION        shift and go to state 38
+    PROCEDURE       shift and go to state 39
+    ID              shift and go to state 13
+    BUILTIN_FUNC    shift and go to state 40
+
+    statements                     shift and go to state 167
+    statement                      shift and go to state 16
+    assign                         shift and go to state 17
+    writeln                        shift and go to state 18
+    write                          shift and go to state 19
+    readln                         shift and go to state 20
+    read                           shift and go to state 21
+    if                             shift and go to state 22
+    case                           shift and go to state 23
+    while                          shift and go to state 24
+    for                            shift and go to state 25
+    function                       shift and go to state 26
+    procedure                      shift and go to state 27
+    func_call                      shift and go to state 28
+    var                            shift and go to state 29
+
+state 139
+
+    (45) expression -> expression OR and_expr .
+    (47) and_expr -> and_expr . AND not_expr
+
+    THEN            reduce using rule 45 (expression -> expression OR and_expr .)
+    OR              reduce using rule 45 (expression -> expression OR and_expr .)
+    OF              reduce using rule 45 (expression -> expression OR and_expr .)
+    DO              reduce using rule 45 (expression -> expression OR and_expr .)
+    ]               reduce using rule 45 (expression -> expression OR and_expr .)
+    PONTO_VIRGULA   reduce using rule 45 (expression -> expression OR and_expr .)
+    )               reduce using rule 45 (expression -> expression OR and_expr .)
+    TO              reduce using rule 45 (expression -> expression OR and_expr .)
+    DOWNTO          reduce using rule 45 (expression -> expression OR and_expr .)
+    AND             shift and go to state 99
+
+
+state 140
+
+    (47) and_expr -> and_expr AND not_expr .
+
+    AND             reduce using rule 47 (and_expr -> and_expr AND not_expr .)
+    THEN            reduce using rule 47 (and_expr -> and_expr AND not_expr .)
+    OR              reduce using rule 47 (and_expr -> and_expr AND not_expr .)
+    OF              reduce using rule 47 (and_expr -> and_expr AND not_expr .)
+    DO              reduce using rule 47 (and_expr -> and_expr AND not_expr .)
+    ]               reduce using rule 47 (and_expr -> and_expr AND not_expr .)
+    PONTO_VIRGULA   reduce using rule 47 (and_expr -> and_expr AND not_expr .)
+    )               reduce using rule 47 (and_expr -> and_expr AND not_expr .)
+    TO              reduce using rule 47 (and_expr -> and_expr AND not_expr .)
+    DOWNTO          reduce using rule 47 (and_expr -> and_expr AND not_expr .)
+
+
+state 141
+
+    (51) rel_expr -> arith_expr rel_op arith_expr .
+    (59) arith_expr -> arith_expr . add_op term
+    (61) add_op -> . MAIS
+    (62) add_op -> . MENOS
+    (63) add_op -> . OR
+
+  ! shift/reduce conflict for OR resolved as shift
+    AND             reduce using rule 51 (rel_expr -> arith_expr rel_op arith_expr .)
+    THEN            reduce using rule 51 (rel_expr -> arith_expr rel_op arith_expr .)
+    OF              reduce using rule 51 (rel_expr -> arith_expr rel_op arith_expr .)
+    DO              reduce using rule 51 (rel_expr -> arith_expr rel_op arith_expr .)
+    ]               reduce using rule 51 (rel_expr -> arith_expr rel_op arith_expr .)
+    PONTO_VIRGULA   reduce using rule 51 (rel_expr -> arith_expr rel_op arith_expr .)
+    )               reduce using rule 51 (rel_expr -> arith_expr rel_op arith_expr .)
+    TO              reduce using rule 51 (rel_expr -> arith_expr rel_op arith_expr .)
+    DOWNTO          reduce using rule 51 (rel_expr -> arith_expr rel_op arith_expr .)
+    MAIS            shift and go to state 109
+    MENOS           shift and go to state 110
+    OR              shift and go to state 111
+
+  ! OR              [ reduce using rule 51 (rel_expr -> arith_expr rel_op arith_expr .) ]
+
+    add_op                         shift and go to state 102
+
+state 142
+
+    (59) arith_expr -> arith_expr add_op term .
+    (64) term -> term . mul_op factor
+    (66) mul_op -> . MULT
+    (67) mul_op -> . DIVIDE
+    (68) mul_op -> . AND
+    (69) mul_op -> . DIV
+    (70) mul_op -> . MOD
+
+  ! shift/reduce conflict for AND resolved as shift
+    IGUAL           reduce using rule 59 (arith_expr -> arith_expr add_op term .)
+    DIFF            reduce using rule 59 (arith_expr -> arith_expr add_op term .)
+    MAIOR           reduce using rule 59 (arith_expr -> arith_expr add_op term .)
+    MENOR           reduce using rule 59 (arith_expr -> arith_expr add_op term .)
+    MENOR_IGUAL     reduce using rule 59 (arith_expr -> arith_expr add_op term .)
+    MAIOR_IGUAL     reduce using rule 59 (arith_expr -> arith_expr add_op term .)
+    MAIS            reduce using rule 59 (arith_expr -> arith_expr add_op term .)
+    MENOS           reduce using rule 59 (arith_expr -> arith_expr add_op term .)
+    OR              reduce using rule 59 (arith_expr -> arith_expr add_op term .)
+    THEN            reduce using rule 59 (arith_expr -> arith_expr add_op term .)
+    OF              reduce using rule 59 (arith_expr -> arith_expr add_op term .)
+    DO              reduce using rule 59 (arith_expr -> arith_expr add_op term .)
+    ]               reduce using rule 59 (arith_expr -> arith_expr add_op term .)
+    PONTO_VIRGULA   reduce using rule 59 (arith_expr -> arith_expr add_op term .)
+    )               reduce using rule 59 (arith_expr -> arith_expr add_op term .)
+    TO              reduce using rule 59 (arith_expr -> arith_expr add_op term .)
+    DOWNTO          reduce using rule 59 (arith_expr -> arith_expr add_op term .)
+    MULT            shift and go to state 113
+    DIVIDE          shift and go to state 114
+    AND             shift and go to state 115
+    DIV             shift and go to state 116
+    MOD             shift and go to state 117
+
+  ! AND             [ reduce using rule 59 (arith_expr -> arith_expr add_op term .) ]
+
+    mul_op                         shift and go to state 112
+
+state 143
+
+    (64) term -> term mul_op factor .
+
+    MULT            reduce using rule 64 (term -> term mul_op factor .)
+    DIVIDE          reduce using rule 64 (term -> term mul_op factor .)
+    AND             reduce using rule 64 (term -> term mul_op factor .)
+    DIV             reduce using rule 64 (term -> term mul_op factor .)
+    MOD             reduce using rule 64 (term -> term mul_op factor .)
+    IGUAL           reduce using rule 64 (term -> term mul_op factor .)
+    DIFF            reduce using rule 64 (term -> term mul_op factor .)
+    MAIOR           reduce using rule 64 (term -> term mul_op factor .)
+    MENOR           reduce using rule 64 (term -> term mul_op factor .)
+    MENOR_IGUAL     reduce using rule 64 (term -> term mul_op factor .)
+    MAIOR_IGUAL     reduce using rule 64 (term -> term mul_op factor .)
+    MAIS            reduce using rule 64 (term -> term mul_op factor .)
+    MENOS           reduce using rule 64 (term -> term mul_op factor .)
+    OR              reduce using rule 64 (term -> term mul_op factor .)
+    THEN            reduce using rule 64 (term -> term mul_op factor .)
+    OF              reduce using rule 64 (term -> term mul_op factor .)
+    DO              reduce using rule 64 (term -> term mul_op factor .)
+    ]               reduce using rule 64 (term -> term mul_op factor .)
+    PONTO_VIRGULA   reduce using rule 64 (term -> term mul_op factor .)
+    )               reduce using rule 64 (term -> term mul_op factor .)
+    TO              reduce using rule 64 (term -> term mul_op factor .)
+    DOWNTO          reduce using rule 64 (term -> term mul_op factor .)
+
+
+state 144
+
+    (73) factor -> ( expression ) .
+
+    MULT            reduce using rule 73 (factor -> ( expression ) .)
+    DIVIDE          reduce using rule 73 (factor -> ( expression ) .)
+    AND             reduce using rule 73 (factor -> ( expression ) .)
+    DIV             reduce using rule 73 (factor -> ( expression ) .)
+    MOD             reduce using rule 73 (factor -> ( expression ) .)
+    IGUAL           reduce using rule 73 (factor -> ( expression ) .)
+    DIFF            reduce using rule 73 (factor -> ( expression ) .)
+    MAIOR           reduce using rule 73 (factor -> ( expression ) .)
+    MENOR           reduce using rule 73 (factor -> ( expression ) .)
+    MENOR_IGUAL     reduce using rule 73 (factor -> ( expression ) .)
+    MAIOR_IGUAL     reduce using rule 73 (factor -> ( expression ) .)
+    MAIS            reduce using rule 73 (factor -> ( expression ) .)
+    MENOS           reduce using rule 73 (factor -> ( expression ) .)
+    OR              reduce using rule 73 (factor -> ( expression ) .)
+    THEN            reduce using rule 73 (factor -> ( expression ) .)
+    OF              reduce using rule 73 (factor -> ( expression ) .)
+    ]               reduce using rule 73 (factor -> ( expression ) .)
+    PONTO_VIRGULA   reduce using rule 73 (factor -> ( expression ) .)
+    DO              reduce using rule 73 (factor -> ( expression ) .)
+    )               reduce using rule 73 (factor -> ( expression ) .)
+    TO              reduce using rule 73 (factor -> ( expression ) .)
+    DOWNTO          reduce using rule 73 (factor -> ( expression ) .)
+
+
+state 145
+
+    (38) case -> CASE expression OF case_branches . END PONTO_VIRGULA
+    (39) case -> CASE expression OF case_branches . ELSE statements END PONTO_VIRGULA
+    (40) case_branches -> case_branches . case_branch
+    (42) case_branch -> . case_labels DOISPONTOS statement
+    (43) case_labels -> . case_labels VIRGULA const
+    (44) case_labels -> . const
+    (87) const -> . STRING
+    (88) const -> . NUM
+
+    END             shift and go to state 168
+    ELSE            shift and go to state 169
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+
+    case_branch                    shift and go to state 170
+    case_labels                    shift and go to state 147
+    const                          shift and go to state 148
+
+state 146
+
+    (41) case_branches -> case_branch .
+
+    END             reduce using rule 41 (case_branches -> case_branch .)
+    ELSE            reduce using rule 41 (case_branches -> case_branch .)
+    STRING          reduce using rule 41 (case_branches -> case_branch .)
+    NUM             reduce using rule 41 (case_branches -> case_branch .)
+
+
+state 147
+
+    (42) case_branch -> case_labels . DOISPONTOS statement
+    (43) case_labels -> case_labels . VIRGULA const
+
+    DOISPONTOS      shift and go to state 171
+    VIRGULA         shift and go to state 172
+
+
+state 148
+
+    (44) case_labels -> const .
+
+    DOISPONTOS      reduce using rule 44 (case_labels -> const .)
+    VIRGULA         reduce using rule 44 (case_labels -> const .)
+
+
+state 149
+
+    (75) while -> WHILE expression DO compound_statement . PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 173
+
+
+state 150
+
+    (76) while -> WHILE ( expression ) . DO compound_statement PONTO_VIRGULA
+    (73) factor -> ( expression ) .
+
+  ! shift/reduce conflict for DO resolved as shift
+    DO              shift and go to state 174
+    MULT            reduce using rule 73 (factor -> ( expression ) .)
+    DIVIDE          reduce using rule 73 (factor -> ( expression ) .)
+    AND             reduce using rule 73 (factor -> ( expression ) .)
+    DIV             reduce using rule 73 (factor -> ( expression ) .)
+    MOD             reduce using rule 73 (factor -> ( expression ) .)
+    IGUAL           reduce using rule 73 (factor -> ( expression ) .)
+    DIFF            reduce using rule 73 (factor -> ( expression ) .)
+    MAIOR           reduce using rule 73 (factor -> ( expression ) .)
+    MENOR           reduce using rule 73 (factor -> ( expression ) .)
+    MENOR_IGUAL     reduce using rule 73 (factor -> ( expression ) .)
+    MAIOR_IGUAL     reduce using rule 73 (factor -> ( expression ) .)
+    MAIS            reduce using rule 73 (factor -> ( expression ) .)
+    MENOS           reduce using rule 73 (factor -> ( expression ) .)
+    OR              reduce using rule 73 (factor -> ( expression ) .)
+
+  ! DO              [ reduce using rule 73 (factor -> ( expression ) .) ]
+
+
+state 151
+
+    (77) for -> FOR ID ASSIGN expression . TO expression DO compound_statement PONTO_VIRGULA
+    (78) for -> FOR ID ASSIGN expression . DOWNTO expression DO compound_statement PONTO_VIRGULA
+    (45) expression -> expression . OR and_expr
+
+    TO              shift and go to state 175
+    DOWNTO          shift and go to state 176
+    OR              shift and go to state 98
+
+
+state 152
+
+    (81) function -> FUNCTION ID ( params . ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+
+    )               shift and go to state 177
+
+
+state 153
+
+    (82) params -> param_list .
+    (85) param_list -> param_list . PONTO_VIRGULA param
+
+    )               reduce using rule 82 (params -> param_list .)
+    PONTO_VIRGULA   shift and go to state 178
+
+
+state 154
+
+    (83) params -> empty .
+
+    )               reduce using rule 83 (params -> empty .)
+
+
+state 155
+
+    (84) param_list -> param .
+
+    PONTO_VIRGULA   reduce using rule 84 (param_list -> param .)
+    )               reduce using rule 84 (param_list -> param .)
+
+
+state 156
+
+    (86) param -> id_list . DOISPONTOS type
+    (9) id_list -> id_list . VIRGULA ID
+
+    DOISPONTOS      shift and go to state 179
+    VIRGULA         shift and go to state 44
+
+
+state 157
+
+    (80) procedure -> PROCEDURE ID ( params . ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+
+    )               shift and go to state 180
+
+
+state 158
+
+    (99) func_call -> BUILTIN_FUNC ( Args ) .
+
+    WRITELN         reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    WRITE           reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    READLN          reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    READ            reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    IF              reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    CASE            reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    WHILE           reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    FOR             reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    FUNCTION        reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    PROCEDURE       reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    ID              reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    BUILTIN_FUNC    reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    END             reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    MULT            reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    DIVIDE          reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    AND             reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    DIV             reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    MOD             reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    IGUAL           reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    DIFF            reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    MAIOR           reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    MENOR           reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    MENOR_IGUAL     reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    MAIOR_IGUAL     reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    MAIS            reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    MENOS           reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    OR              reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    THEN            reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    OF              reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    DO              reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    ]               reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    PONTO_VIRGULA   reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    )               reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    TO              reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    DOWNTO          reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    ELSE            reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    STRING          reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+    NUM             reduce using rule 99 (func_call -> BUILTIN_FUNC ( Args ) .)
+
+
+state 159
+
+    (96) array_type -> ARRAY [ NUM . DOUBLEPOINTS NUM ] OF type
+    (97) array_type -> ARRAY [ NUM . ] OF type
+
+    DOUBLEPOINTS    shift and go to state 181
+    ]               shift and go to state 182
+
+
+state 160
+
+    (29) Args -> Args VIRGULA Arg .
+
+    )               reduce using rule 29 (Args -> Args VIRGULA Arg .)
+    VIRGULA         reduce using rule 29 (Args -> Args VIRGULA Arg .)
+
+
+state 161
+
+    (25) writeln -> WRITELN ( Args ) PONTO_VIRGULA .
+
+    WRITELN         reduce using rule 25 (writeln -> WRITELN ( Args ) PONTO_VIRGULA .)
+    WRITE           reduce using rule 25 (writeln -> WRITELN ( Args ) PONTO_VIRGULA .)
+    READLN          reduce using rule 25 (writeln -> WRITELN ( Args ) PONTO_VIRGULA .)
+    READ            reduce using rule 25 (writeln -> WRITELN ( Args ) PONTO_VIRGULA .)
+    IF              reduce using rule 25 (writeln -> WRITELN ( Args ) PONTO_VIRGULA .)
+    CASE            reduce using rule 25 (writeln -> WRITELN ( Args ) PONTO_VIRGULA .)
+    WHILE           reduce using rule 25 (writeln -> WRITELN ( Args ) PONTO_VIRGULA .)
+    FOR             reduce using rule 25 (writeln -> WRITELN ( Args ) PONTO_VIRGULA .)
+    FUNCTION        reduce using rule 25 (writeln -> WRITELN ( Args ) PONTO_VIRGULA .)
+    PROCEDURE       reduce using rule 25 (writeln -> WRITELN ( Args ) PONTO_VIRGULA .)
+    ID              reduce using rule 25 (writeln -> WRITELN ( Args ) PONTO_VIRGULA .)
+    BUILTIN_FUNC    reduce using rule 25 (writeln -> WRITELN ( Args ) PONTO_VIRGULA .)
+    END             reduce using rule 25 (writeln -> WRITELN ( Args ) PONTO_VIRGULA .)
+    ELSE            reduce using rule 25 (writeln -> WRITELN ( Args ) PONTO_VIRGULA .)
+    STRING          reduce using rule 25 (writeln -> WRITELN ( Args ) PONTO_VIRGULA .)
+    NUM             reduce using rule 25 (writeln -> WRITELN ( Args ) PONTO_VIRGULA .)
+
+
+state 162
+
+    (26) write -> WRITE ( Args ) PONTO_VIRGULA .
+
+    WRITELN         reduce using rule 26 (write -> WRITE ( Args ) PONTO_VIRGULA .)
+    WRITE           reduce using rule 26 (write -> WRITE ( Args ) PONTO_VIRGULA .)
+    READLN          reduce using rule 26 (write -> WRITE ( Args ) PONTO_VIRGULA .)
+    READ            reduce using rule 26 (write -> WRITE ( Args ) PONTO_VIRGULA .)
+    IF              reduce using rule 26 (write -> WRITE ( Args ) PONTO_VIRGULA .)
+    CASE            reduce using rule 26 (write -> WRITE ( Args ) PONTO_VIRGULA .)
+    WHILE           reduce using rule 26 (write -> WRITE ( Args ) PONTO_VIRGULA .)
+    FOR             reduce using rule 26 (write -> WRITE ( Args ) PONTO_VIRGULA .)
+    FUNCTION        reduce using rule 26 (write -> WRITE ( Args ) PONTO_VIRGULA .)
+    PROCEDURE       reduce using rule 26 (write -> WRITE ( Args ) PONTO_VIRGULA .)
+    ID              reduce using rule 26 (write -> WRITE ( Args ) PONTO_VIRGULA .)
+    BUILTIN_FUNC    reduce using rule 26 (write -> WRITE ( Args ) PONTO_VIRGULA .)
+    END             reduce using rule 26 (write -> WRITE ( Args ) PONTO_VIRGULA .)
+    ELSE            reduce using rule 26 (write -> WRITE ( Args ) PONTO_VIRGULA .)
+    STRING          reduce using rule 26 (write -> WRITE ( Args ) PONTO_VIRGULA .)
+    NUM             reduce using rule 26 (write -> WRITE ( Args ) PONTO_VIRGULA .)
+
+
+state 163
+
+    (27) readln -> READLN ( Args ) PONTO_VIRGULA .
+
+    WRITELN         reduce using rule 27 (readln -> READLN ( Args ) PONTO_VIRGULA .)
+    WRITE           reduce using rule 27 (readln -> READLN ( Args ) PONTO_VIRGULA .)
+    READLN          reduce using rule 27 (readln -> READLN ( Args ) PONTO_VIRGULA .)
+    READ            reduce using rule 27 (readln -> READLN ( Args ) PONTO_VIRGULA .)
+    IF              reduce using rule 27 (readln -> READLN ( Args ) PONTO_VIRGULA .)
+    CASE            reduce using rule 27 (readln -> READLN ( Args ) PONTO_VIRGULA .)
+    WHILE           reduce using rule 27 (readln -> READLN ( Args ) PONTO_VIRGULA .)
+    FOR             reduce using rule 27 (readln -> READLN ( Args ) PONTO_VIRGULA .)
+    FUNCTION        reduce using rule 27 (readln -> READLN ( Args ) PONTO_VIRGULA .)
+    PROCEDURE       reduce using rule 27 (readln -> READLN ( Args ) PONTO_VIRGULA .)
+    ID              reduce using rule 27 (readln -> READLN ( Args ) PONTO_VIRGULA .)
+    BUILTIN_FUNC    reduce using rule 27 (readln -> READLN ( Args ) PONTO_VIRGULA .)
+    END             reduce using rule 27 (readln -> READLN ( Args ) PONTO_VIRGULA .)
+    ELSE            reduce using rule 27 (readln -> READLN ( Args ) PONTO_VIRGULA .)
+    STRING          reduce using rule 27 (readln -> READLN ( Args ) PONTO_VIRGULA .)
+    NUM             reduce using rule 27 (readln -> READLN ( Args ) PONTO_VIRGULA .)
+
+
+state 164
+
+    (28) read -> READ ( Args ) PONTO_VIRGULA .
+
+    WRITELN         reduce using rule 28 (read -> READ ( Args ) PONTO_VIRGULA .)
+    WRITE           reduce using rule 28 (read -> READ ( Args ) PONTO_VIRGULA .)
+    READLN          reduce using rule 28 (read -> READ ( Args ) PONTO_VIRGULA .)
+    READ            reduce using rule 28 (read -> READ ( Args ) PONTO_VIRGULA .)
+    IF              reduce using rule 28 (read -> READ ( Args ) PONTO_VIRGULA .)
+    CASE            reduce using rule 28 (read -> READ ( Args ) PONTO_VIRGULA .)
+    WHILE           reduce using rule 28 (read -> READ ( Args ) PONTO_VIRGULA .)
+    FOR             reduce using rule 28 (read -> READ ( Args ) PONTO_VIRGULA .)
+    FUNCTION        reduce using rule 28 (read -> READ ( Args ) PONTO_VIRGULA .)
+    PROCEDURE       reduce using rule 28 (read -> READ ( Args ) PONTO_VIRGULA .)
+    ID              reduce using rule 28 (read -> READ ( Args ) PONTO_VIRGULA .)
+    BUILTIN_FUNC    reduce using rule 28 (read -> READ ( Args ) PONTO_VIRGULA .)
+    END             reduce using rule 28 (read -> READ ( Args ) PONTO_VIRGULA .)
+    ELSE            reduce using rule 28 (read -> READ ( Args ) PONTO_VIRGULA .)
+    STRING          reduce using rule 28 (read -> READ ( Args ) PONTO_VIRGULA .)
+    NUM             reduce using rule 28 (read -> READ ( Args ) PONTO_VIRGULA .)
+
+
+state 165
+
+    (35) if -> IF expression THEN statement ELSE . statement
+    (13) statement -> . assign
+    (14) statement -> . writeln
+    (15) statement -> . write
+    (16) statement -> . readln
+    (17) statement -> . read
+    (18) statement -> . if
+    (19) statement -> . case
+    (20) statement -> . while
+    (21) statement -> . for
+    (22) statement -> . function
+    (23) statement -> . procedure
+    (24) statement -> . func_call
+    (33) assign -> . var ASSIGN expression PONTO_VIRGULA
+    (25) writeln -> . WRITELN ( Args ) PONTO_VIRGULA
+    (26) write -> . WRITE ( Args ) PONTO_VIRGULA
+    (27) readln -> . READLN ( Args ) PONTO_VIRGULA
+    (28) read -> . READ ( Args ) PONTO_VIRGULA
+    (34) if -> . IF expression THEN statement
+    (35) if -> . IF expression THEN statement ELSE statement
+    (36) if -> . IF expression THEN compound_statement
+    (37) if -> . IF expression THEN compound_statement ELSE compound_statement
+    (38) case -> . CASE expression OF case_branches END PONTO_VIRGULA
+    (39) case -> . CASE expression OF case_branches ELSE statements END PONTO_VIRGULA
+    (75) while -> . WHILE expression DO compound_statement PONTO_VIRGULA
+    (76) while -> . WHILE ( expression ) DO compound_statement PONTO_VIRGULA
+    (77) for -> . FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA
+    (78) for -> . FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA
+    (81) function -> . FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (80) procedure -> . PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+
+    WRITELN         shift and go to state 30
+    WRITE           shift and go to state 31
+    READLN          shift and go to state 32
+    READ            shift and go to state 33
+    IF              shift and go to state 34
+    CASE            shift and go to state 35
+    WHILE           shift and go to state 36
+    FOR             shift and go to state 37
+    FUNCTION        shift and go to state 38
+    PROCEDURE       shift and go to state 39
+    ID              shift and go to state 13
+    BUILTIN_FUNC    shift and go to state 40
+
+    statement                      shift and go to state 183
+    assign                         shift and go to state 17
+    writeln                        shift and go to state 18
+    write                          shift and go to state 19
+    readln                         shift and go to state 20
+    read                           shift and go to state 21
+    if                             shift and go to state 22
+    case                           shift and go to state 23
+    while                          shift and go to state 24
+    for                            shift and go to state 25
+    function                       shift and go to state 26
+    procedure                      shift and go to state 27
+    func_call                      shift and go to state 28
+    var                            shift and go to state 29
+
+state 166
+
+    (37) if -> IF expression THEN compound_statement ELSE . compound_statement
+    (79) compound_statement -> . BEGIN statements END
+
+    BEGIN           shift and go to state 138
+
+    compound_statement             shift and go to state 184
+
+state 167
+
+    (79) compound_statement -> BEGIN statements . END
+    (11) statements -> statements . statement
+    (13) statement -> . assign
+    (14) statement -> . writeln
+    (15) statement -> . write
+    (16) statement -> . readln
+    (17) statement -> . read
+    (18) statement -> . if
+    (19) statement -> . case
+    (20) statement -> . while
+    (21) statement -> . for
+    (22) statement -> . function
+    (23) statement -> . procedure
+    (24) statement -> . func_call
+    (33) assign -> . var ASSIGN expression PONTO_VIRGULA
+    (25) writeln -> . WRITELN ( Args ) PONTO_VIRGULA
+    (26) write -> . WRITE ( Args ) PONTO_VIRGULA
+    (27) readln -> . READLN ( Args ) PONTO_VIRGULA
+    (28) read -> . READ ( Args ) PONTO_VIRGULA
+    (34) if -> . IF expression THEN statement
+    (35) if -> . IF expression THEN statement ELSE statement
+    (36) if -> . IF expression THEN compound_statement
+    (37) if -> . IF expression THEN compound_statement ELSE compound_statement
+    (38) case -> . CASE expression OF case_branches END PONTO_VIRGULA
+    (39) case -> . CASE expression OF case_branches ELSE statements END PONTO_VIRGULA
+    (75) while -> . WHILE expression DO compound_statement PONTO_VIRGULA
+    (76) while -> . WHILE ( expression ) DO compound_statement PONTO_VIRGULA
+    (77) for -> . FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA
+    (78) for -> . FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA
+    (81) function -> . FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (80) procedure -> . PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+
+    END             shift and go to state 185
+    WRITELN         shift and go to state 30
+    WRITE           shift and go to state 31
+    READLN          shift and go to state 32
+    READ            shift and go to state 33
+    IF              shift and go to state 34
+    CASE            shift and go to state 35
+    WHILE           shift and go to state 36
+    FOR             shift and go to state 37
+    FUNCTION        shift and go to state 38
+    PROCEDURE       shift and go to state 39
+    ID              shift and go to state 13
+    BUILTIN_FUNC    shift and go to state 40
+
+    statement                      shift and go to state 48
+    assign                         shift and go to state 17
+    writeln                        shift and go to state 18
+    write                          shift and go to state 19
+    readln                         shift and go to state 20
+    read                           shift and go to state 21
+    if                             shift and go to state 22
+    case                           shift and go to state 23
+    while                          shift and go to state 24
+    for                            shift and go to state 25
+    function                       shift and go to state 26
+    procedure                      shift and go to state 27
+    func_call                      shift and go to state 28
+    var                            shift and go to state 29
+
+state 168
+
+    (38) case -> CASE expression OF case_branches END . PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 186
+
+
+state 169
+
+    (39) case -> CASE expression OF case_branches ELSE . statements END PONTO_VIRGULA
+    (11) statements -> . statements statement
+    (12) statements -> . statement
+    (13) statement -> . assign
+    (14) statement -> . writeln
+    (15) statement -> . write
+    (16) statement -> . readln
+    (17) statement -> . read
+    (18) statement -> . if
+    (19) statement -> . case
+    (20) statement -> . while
+    (21) statement -> . for
+    (22) statement -> . function
+    (23) statement -> . procedure
+    (24) statement -> . func_call
+    (33) assign -> . var ASSIGN expression PONTO_VIRGULA
+    (25) writeln -> . WRITELN ( Args ) PONTO_VIRGULA
+    (26) write -> . WRITE ( Args ) PONTO_VIRGULA
+    (27) readln -> . READLN ( Args ) PONTO_VIRGULA
+    (28) read -> . READ ( Args ) PONTO_VIRGULA
+    (34) if -> . IF expression THEN statement
+    (35) if -> . IF expression THEN statement ELSE statement
+    (36) if -> . IF expression THEN compound_statement
+    (37) if -> . IF expression THEN compound_statement ELSE compound_statement
+    (38) case -> . CASE expression OF case_branches END PONTO_VIRGULA
+    (39) case -> . CASE expression OF case_branches ELSE statements END PONTO_VIRGULA
+    (75) while -> . WHILE expression DO compound_statement PONTO_VIRGULA
+    (76) while -> . WHILE ( expression ) DO compound_statement PONTO_VIRGULA
+    (77) for -> . FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA
+    (78) for -> . FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA
+    (81) function -> . FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (80) procedure -> . PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+
+    WRITELN         shift and go to state 30
+    WRITE           shift and go to state 31
+    READLN          shift and go to state 32
+    READ            shift and go to state 33
+    IF              shift and go to state 34
+    CASE            shift and go to state 35
+    WHILE           shift and go to state 36
+    FOR             shift and go to state 37
+    FUNCTION        shift and go to state 38
+    PROCEDURE       shift and go to state 39
+    ID              shift and go to state 13
+    BUILTIN_FUNC    shift and go to state 40
+
+    statements                     shift and go to state 187
+    statement                      shift and go to state 16
+    assign                         shift and go to state 17
+    writeln                        shift and go to state 18
+    write                          shift and go to state 19
+    readln                         shift and go to state 20
+    read                           shift and go to state 21
+    if                             shift and go to state 22
+    case                           shift and go to state 23
+    while                          shift and go to state 24
+    for                            shift and go to state 25
+    function                       shift and go to state 26
+    procedure                      shift and go to state 27
+    func_call                      shift and go to state 28
+    var                            shift and go to state 29
+
+state 170
+
+    (40) case_branches -> case_branches case_branch .
+
+    END             reduce using rule 40 (case_branches -> case_branches case_branch .)
+    ELSE            reduce using rule 40 (case_branches -> case_branches case_branch .)
+    STRING          reduce using rule 40 (case_branches -> case_branches case_branch .)
+    NUM             reduce using rule 40 (case_branches -> case_branches case_branch .)
+
+
+state 171
+
+    (42) case_branch -> case_labels DOISPONTOS . statement
+    (13) statement -> . assign
+    (14) statement -> . writeln
+    (15) statement -> . write
+    (16) statement -> . readln
+    (17) statement -> . read
+    (18) statement -> . if
+    (19) statement -> . case
+    (20) statement -> . while
+    (21) statement -> . for
+    (22) statement -> . function
+    (23) statement -> . procedure
+    (24) statement -> . func_call
+    (33) assign -> . var ASSIGN expression PONTO_VIRGULA
+    (25) writeln -> . WRITELN ( Args ) PONTO_VIRGULA
+    (26) write -> . WRITE ( Args ) PONTO_VIRGULA
+    (27) readln -> . READLN ( Args ) PONTO_VIRGULA
+    (28) read -> . READ ( Args ) PONTO_VIRGULA
+    (34) if -> . IF expression THEN statement
+    (35) if -> . IF expression THEN statement ELSE statement
+    (36) if -> . IF expression THEN compound_statement
+    (37) if -> . IF expression THEN compound_statement ELSE compound_statement
+    (38) case -> . CASE expression OF case_branches END PONTO_VIRGULA
+    (39) case -> . CASE expression OF case_branches ELSE statements END PONTO_VIRGULA
+    (75) while -> . WHILE expression DO compound_statement PONTO_VIRGULA
+    (76) while -> . WHILE ( expression ) DO compound_statement PONTO_VIRGULA
+    (77) for -> . FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA
+    (78) for -> . FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA
+    (81) function -> . FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (80) procedure -> . PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+
+    WRITELN         shift and go to state 30
+    WRITE           shift and go to state 31
+    READLN          shift and go to state 32
+    READ            shift and go to state 33
+    IF              shift and go to state 34
+    CASE            shift and go to state 35
+    WHILE           shift and go to state 36
+    FOR             shift and go to state 37
+    FUNCTION        shift and go to state 38
+    PROCEDURE       shift and go to state 39
+    ID              shift and go to state 13
+    BUILTIN_FUNC    shift and go to state 40
+
+    statement                      shift and go to state 188
+    assign                         shift and go to state 17
+    writeln                        shift and go to state 18
+    write                          shift and go to state 19
+    readln                         shift and go to state 20
+    read                           shift and go to state 21
+    if                             shift and go to state 22
+    case                           shift and go to state 23
+    while                          shift and go to state 24
+    for                            shift and go to state 25
+    function                       shift and go to state 26
+    procedure                      shift and go to state 27
+    func_call                      shift and go to state 28
+    var                            shift and go to state 29
+
+state 172
+
+    (43) case_labels -> case_labels VIRGULA . const
+    (87) const -> . STRING
+    (88) const -> . NUM
+
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+
+    const                          shift and go to state 189
+
+state 173
+
+    (75) while -> WHILE expression DO compound_statement PONTO_VIRGULA .
+
+    WRITELN         reduce using rule 75 (while -> WHILE expression DO compound_statement PONTO_VIRGULA .)
+    WRITE           reduce using rule 75 (while -> WHILE expression DO compound_statement PONTO_VIRGULA .)
+    READLN          reduce using rule 75 (while -> WHILE expression DO compound_statement PONTO_VIRGULA .)
+    READ            reduce using rule 75 (while -> WHILE expression DO compound_statement PONTO_VIRGULA .)
+    IF              reduce using rule 75 (while -> WHILE expression DO compound_statement PONTO_VIRGULA .)
+    CASE            reduce using rule 75 (while -> WHILE expression DO compound_statement PONTO_VIRGULA .)
+    WHILE           reduce using rule 75 (while -> WHILE expression DO compound_statement PONTO_VIRGULA .)
+    FOR             reduce using rule 75 (while -> WHILE expression DO compound_statement PONTO_VIRGULA .)
+    FUNCTION        reduce using rule 75 (while -> WHILE expression DO compound_statement PONTO_VIRGULA .)
+    PROCEDURE       reduce using rule 75 (while -> WHILE expression DO compound_statement PONTO_VIRGULA .)
+    ID              reduce using rule 75 (while -> WHILE expression DO compound_statement PONTO_VIRGULA .)
+    BUILTIN_FUNC    reduce using rule 75 (while -> WHILE expression DO compound_statement PONTO_VIRGULA .)
+    END             reduce using rule 75 (while -> WHILE expression DO compound_statement PONTO_VIRGULA .)
+    ELSE            reduce using rule 75 (while -> WHILE expression DO compound_statement PONTO_VIRGULA .)
+    STRING          reduce using rule 75 (while -> WHILE expression DO compound_statement PONTO_VIRGULA .)
+    NUM             reduce using rule 75 (while -> WHILE expression DO compound_statement PONTO_VIRGULA .)
+
+
+state 174
+
+    (76) while -> WHILE ( expression ) DO . compound_statement PONTO_VIRGULA
+    (79) compound_statement -> . BEGIN statements END
+
+    BEGIN           shift and go to state 138
+
+    compound_statement             shift and go to state 190
+
+state 175
+
+    (77) for -> FOR ID ASSIGN expression TO . expression DO compound_statement PONTO_VIRGULA
+    (45) expression -> . expression OR and_expr
+    (46) expression -> . and_expr
+    (47) and_expr -> . and_expr AND not_expr
+    (48) and_expr -> . not_expr
+    (49) not_expr -> . NOT not_expr
+    (50) not_expr -> . rel_expr
+    (51) rel_expr -> . arith_expr rel_op arith_expr
+    (52) rel_expr -> . arith_expr
+    (59) arith_expr -> . arith_expr add_op term
+    (60) arith_expr -> . term
+    (64) term -> . term mul_op factor
+    (65) term -> . factor
+    (71) factor -> . const
+    (72) factor -> . var
+    (73) factor -> . ( expression )
+    (74) factor -> . func_call
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+
+    NOT             shift and go to state 57
+    (               shift and go to state 64
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 68
+    BUILTIN_FUNC    shift and go to state 40
+
+    expression                     shift and go to state 191
+    and_expr                       shift and go to state 55
+    not_expr                       shift and go to state 56
+    rel_expr                       shift and go to state 58
+    arith_expr                     shift and go to state 59
+    term                           shift and go to state 60
+    factor                         shift and go to state 61
+    const                          shift and go to state 62
+    var                            shift and go to state 63
+    func_call                      shift and go to state 65
+
+state 176
+
+    (78) for -> FOR ID ASSIGN expression DOWNTO . expression DO compound_statement PONTO_VIRGULA
+    (45) expression -> . expression OR and_expr
+    (46) expression -> . and_expr
+    (47) and_expr -> . and_expr AND not_expr
+    (48) and_expr -> . not_expr
+    (49) not_expr -> . NOT not_expr
+    (50) not_expr -> . rel_expr
+    (51) rel_expr -> . arith_expr rel_op arith_expr
+    (52) rel_expr -> . arith_expr
+    (59) arith_expr -> . arith_expr add_op term
+    (60) arith_expr -> . term
+    (64) term -> . term mul_op factor
+    (65) term -> . factor
+    (71) factor -> . const
+    (72) factor -> . var
+    (73) factor -> . ( expression )
+    (74) factor -> . func_call
+    (87) const -> . STRING
+    (88) const -> . NUM
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+
+    NOT             shift and go to state 57
+    (               shift and go to state 64
+    STRING          shift and go to state 66
+    NUM             shift and go to state 67
+    ID              shift and go to state 68
+    BUILTIN_FUNC    shift and go to state 40
+
+    expression                     shift and go to state 192
+    and_expr                       shift and go to state 55
+    not_expr                       shift and go to state 56
+    rel_expr                       shift and go to state 58
+    arith_expr                     shift and go to state 59
+    term                           shift and go to state 60
+    factor                         shift and go to state 61
+    const                          shift and go to state 62
+    var                            shift and go to state 63
+    func_call                      shift and go to state 65
+
+state 177
+
+    (81) function -> FUNCTION ID ( params ) . DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+
+    DOISPONTOS      shift and go to state 193
+
+
+state 178
+
+    (85) param_list -> param_list PONTO_VIRGULA . param
+    (86) param -> . id_list DOISPONTOS type
+    (8) id_list -> . ID
+    (9) id_list -> . id_list VIRGULA ID
+
+    ID              shift and go to state 12
+
+    param                          shift and go to state 194
+    id_list                        shift and go to state 156
+
+state 179
+
+    (86) param -> id_list DOISPONTOS . type
+    (91) type -> . INTEGER
+    (92) type -> . REAL
+    (93) type -> . STRING_TYPE
+    (94) type -> . BOOLEAN
+    (95) type -> . array_type
+    (96) array_type -> . ARRAY [ NUM DOUBLEPOINTS NUM ] OF type
+    (97) array_type -> . ARRAY [ NUM ] OF type
+
+    INTEGER         shift and go to state 78
+    REAL            shift and go to state 79
+    STRING_TYPE     shift and go to state 80
+    BOOLEAN         shift and go to state 81
+    ARRAY           shift and go to state 83
+
+    type                           shift and go to state 195
+    array_type                     shift and go to state 82
+
+state 180
+
+    (80) procedure -> PROCEDURE ID ( params ) . PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 196
+
+
+state 181
+
+    (96) array_type -> ARRAY [ NUM DOUBLEPOINTS . NUM ] OF type
+
+    NUM             shift and go to state 197
+
+
+state 182
+
+    (97) array_type -> ARRAY [ NUM ] . OF type
+
+    OF              shift and go to state 198
+
+
+state 183
+
+    (35) if -> IF expression THEN statement ELSE statement .
+
+    WRITELN         reduce using rule 35 (if -> IF expression THEN statement ELSE statement .)
+    WRITE           reduce using rule 35 (if -> IF expression THEN statement ELSE statement .)
+    READLN          reduce using rule 35 (if -> IF expression THEN statement ELSE statement .)
+    READ            reduce using rule 35 (if -> IF expression THEN statement ELSE statement .)
+    IF              reduce using rule 35 (if -> IF expression THEN statement ELSE statement .)
+    CASE            reduce using rule 35 (if -> IF expression THEN statement ELSE statement .)
+    WHILE           reduce using rule 35 (if -> IF expression THEN statement ELSE statement .)
+    FOR             reduce using rule 35 (if -> IF expression THEN statement ELSE statement .)
+    FUNCTION        reduce using rule 35 (if -> IF expression THEN statement ELSE statement .)
+    PROCEDURE       reduce using rule 35 (if -> IF expression THEN statement ELSE statement .)
+    ID              reduce using rule 35 (if -> IF expression THEN statement ELSE statement .)
+    BUILTIN_FUNC    reduce using rule 35 (if -> IF expression THEN statement ELSE statement .)
+    END             reduce using rule 35 (if -> IF expression THEN statement ELSE statement .)
+    ELSE            reduce using rule 35 (if -> IF expression THEN statement ELSE statement .)
+    STRING          reduce using rule 35 (if -> IF expression THEN statement ELSE statement .)
+    NUM             reduce using rule 35 (if -> IF expression THEN statement ELSE statement .)
+
+
+state 184
+
+    (37) if -> IF expression THEN compound_statement ELSE compound_statement .
+
+    WRITELN         reduce using rule 37 (if -> IF expression THEN compound_statement ELSE compound_statement .)
+    WRITE           reduce using rule 37 (if -> IF expression THEN compound_statement ELSE compound_statement .)
+    READLN          reduce using rule 37 (if -> IF expression THEN compound_statement ELSE compound_statement .)
+    READ            reduce using rule 37 (if -> IF expression THEN compound_statement ELSE compound_statement .)
+    IF              reduce using rule 37 (if -> IF expression THEN compound_statement ELSE compound_statement .)
+    CASE            reduce using rule 37 (if -> IF expression THEN compound_statement ELSE compound_statement .)
+    WHILE           reduce using rule 37 (if -> IF expression THEN compound_statement ELSE compound_statement .)
+    FOR             reduce using rule 37 (if -> IF expression THEN compound_statement ELSE compound_statement .)
+    FUNCTION        reduce using rule 37 (if -> IF expression THEN compound_statement ELSE compound_statement .)
+    PROCEDURE       reduce using rule 37 (if -> IF expression THEN compound_statement ELSE compound_statement .)
+    ID              reduce using rule 37 (if -> IF expression THEN compound_statement ELSE compound_statement .)
+    BUILTIN_FUNC    reduce using rule 37 (if -> IF expression THEN compound_statement ELSE compound_statement .)
+    END             reduce using rule 37 (if -> IF expression THEN compound_statement ELSE compound_statement .)
+    ELSE            reduce using rule 37 (if -> IF expression THEN compound_statement ELSE compound_statement .)
+    STRING          reduce using rule 37 (if -> IF expression THEN compound_statement ELSE compound_statement .)
+    NUM             reduce using rule 37 (if -> IF expression THEN compound_statement ELSE compound_statement .)
+
+
+state 185
+
+    (79) compound_statement -> BEGIN statements END .
+
+    ELSE            reduce using rule 79 (compound_statement -> BEGIN statements END .)
+    WRITELN         reduce using rule 79 (compound_statement -> BEGIN statements END .)
+    WRITE           reduce using rule 79 (compound_statement -> BEGIN statements END .)
+    READLN          reduce using rule 79 (compound_statement -> BEGIN statements END .)
+    READ            reduce using rule 79 (compound_statement -> BEGIN statements END .)
+    IF              reduce using rule 79 (compound_statement -> BEGIN statements END .)
+    CASE            reduce using rule 79 (compound_statement -> BEGIN statements END .)
+    WHILE           reduce using rule 79 (compound_statement -> BEGIN statements END .)
+    FOR             reduce using rule 79 (compound_statement -> BEGIN statements END .)
+    FUNCTION        reduce using rule 79 (compound_statement -> BEGIN statements END .)
+    PROCEDURE       reduce using rule 79 (compound_statement -> BEGIN statements END .)
+    ID              reduce using rule 79 (compound_statement -> BEGIN statements END .)
+    BUILTIN_FUNC    reduce using rule 79 (compound_statement -> BEGIN statements END .)
+    END             reduce using rule 79 (compound_statement -> BEGIN statements END .)
+    STRING          reduce using rule 79 (compound_statement -> BEGIN statements END .)
+    NUM             reduce using rule 79 (compound_statement -> BEGIN statements END .)
+    PONTO_VIRGULA   reduce using rule 79 (compound_statement -> BEGIN statements END .)
+
+
+state 186
+
+    (38) case -> CASE expression OF case_branches END PONTO_VIRGULA .
+
+    WRITELN         reduce using rule 38 (case -> CASE expression OF case_branches END PONTO_VIRGULA .)
+    WRITE           reduce using rule 38 (case -> CASE expression OF case_branches END PONTO_VIRGULA .)
+    READLN          reduce using rule 38 (case -> CASE expression OF case_branches END PONTO_VIRGULA .)
+    READ            reduce using rule 38 (case -> CASE expression OF case_branches END PONTO_VIRGULA .)
+    IF              reduce using rule 38 (case -> CASE expression OF case_branches END PONTO_VIRGULA .)
+    CASE            reduce using rule 38 (case -> CASE expression OF case_branches END PONTO_VIRGULA .)
+    WHILE           reduce using rule 38 (case -> CASE expression OF case_branches END PONTO_VIRGULA .)
+    FOR             reduce using rule 38 (case -> CASE expression OF case_branches END PONTO_VIRGULA .)
+    FUNCTION        reduce using rule 38 (case -> CASE expression OF case_branches END PONTO_VIRGULA .)
+    PROCEDURE       reduce using rule 38 (case -> CASE expression OF case_branches END PONTO_VIRGULA .)
+    ID              reduce using rule 38 (case -> CASE expression OF case_branches END PONTO_VIRGULA .)
+    BUILTIN_FUNC    reduce using rule 38 (case -> CASE expression OF case_branches END PONTO_VIRGULA .)
+    END             reduce using rule 38 (case -> CASE expression OF case_branches END PONTO_VIRGULA .)
+    ELSE            reduce using rule 38 (case -> CASE expression OF case_branches END PONTO_VIRGULA .)
+    STRING          reduce using rule 38 (case -> CASE expression OF case_branches END PONTO_VIRGULA .)
+    NUM             reduce using rule 38 (case -> CASE expression OF case_branches END PONTO_VIRGULA .)
+
+
+state 187
+
+    (39) case -> CASE expression OF case_branches ELSE statements . END PONTO_VIRGULA
+    (11) statements -> statements . statement
+    (13) statement -> . assign
+    (14) statement -> . writeln
+    (15) statement -> . write
+    (16) statement -> . readln
+    (17) statement -> . read
+    (18) statement -> . if
+    (19) statement -> . case
+    (20) statement -> . while
+    (21) statement -> . for
+    (22) statement -> . function
+    (23) statement -> . procedure
+    (24) statement -> . func_call
+    (33) assign -> . var ASSIGN expression PONTO_VIRGULA
+    (25) writeln -> . WRITELN ( Args ) PONTO_VIRGULA
+    (26) write -> . WRITE ( Args ) PONTO_VIRGULA
+    (27) readln -> . READLN ( Args ) PONTO_VIRGULA
+    (28) read -> . READ ( Args ) PONTO_VIRGULA
+    (34) if -> . IF expression THEN statement
+    (35) if -> . IF expression THEN statement ELSE statement
+    (36) if -> . IF expression THEN compound_statement
+    (37) if -> . IF expression THEN compound_statement ELSE compound_statement
+    (38) case -> . CASE expression OF case_branches END PONTO_VIRGULA
+    (39) case -> . CASE expression OF case_branches ELSE statements END PONTO_VIRGULA
+    (75) while -> . WHILE expression DO compound_statement PONTO_VIRGULA
+    (76) while -> . WHILE ( expression ) DO compound_statement PONTO_VIRGULA
+    (77) for -> . FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA
+    (78) for -> . FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA
+    (81) function -> . FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (80) procedure -> . PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+
+    END             shift and go to state 199
+    WRITELN         shift and go to state 30
+    WRITE           shift and go to state 31
+    READLN          shift and go to state 32
+    READ            shift and go to state 33
+    IF              shift and go to state 34
+    CASE            shift and go to state 35
+    WHILE           shift and go to state 36
+    FOR             shift and go to state 37
+    FUNCTION        shift and go to state 38
+    PROCEDURE       shift and go to state 39
+    ID              shift and go to state 13
+    BUILTIN_FUNC    shift and go to state 40
+
+    statement                      shift and go to state 48
+    assign                         shift and go to state 17
+    writeln                        shift and go to state 18
+    write                          shift and go to state 19
+    readln                         shift and go to state 20
+    read                           shift and go to state 21
+    if                             shift and go to state 22
+    case                           shift and go to state 23
+    while                          shift and go to state 24
+    for                            shift and go to state 25
+    function                       shift and go to state 26
+    procedure                      shift and go to state 27
+    func_call                      shift and go to state 28
+    var                            shift and go to state 29
+
+state 188
+
+    (42) case_branch -> case_labels DOISPONTOS statement .
+
+    END             reduce using rule 42 (case_branch -> case_labels DOISPONTOS statement .)
+    ELSE            reduce using rule 42 (case_branch -> case_labels DOISPONTOS statement .)
+    STRING          reduce using rule 42 (case_branch -> case_labels DOISPONTOS statement .)
+    NUM             reduce using rule 42 (case_branch -> case_labels DOISPONTOS statement .)
+
+
+state 189
+
+    (43) case_labels -> case_labels VIRGULA const .
+
+    DOISPONTOS      reduce using rule 43 (case_labels -> case_labels VIRGULA const .)
+    VIRGULA         reduce using rule 43 (case_labels -> case_labels VIRGULA const .)
+
+
+state 190
+
+    (76) while -> WHILE ( expression ) DO compound_statement . PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 200
+
+
+state 191
+
+    (77) for -> FOR ID ASSIGN expression TO expression . DO compound_statement PONTO_VIRGULA
+    (45) expression -> expression . OR and_expr
+
+    DO              shift and go to state 201
+    OR              shift and go to state 98
+
+
+state 192
+
+    (78) for -> FOR ID ASSIGN expression DOWNTO expression . DO compound_statement PONTO_VIRGULA
+    (45) expression -> expression . OR and_expr
+
+    DO              shift and go to state 202
+    OR              shift and go to state 98
+
+
+state 193
+
+    (81) function -> FUNCTION ID ( params ) DOISPONTOS . type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (91) type -> . INTEGER
+    (92) type -> . REAL
+    (93) type -> . STRING_TYPE
+    (94) type -> . BOOLEAN
+    (95) type -> . array_type
+    (96) array_type -> . ARRAY [ NUM DOUBLEPOINTS NUM ] OF type
+    (97) array_type -> . ARRAY [ NUM ] OF type
+
+    INTEGER         shift and go to state 78
+    REAL            shift and go to state 79
+    STRING_TYPE     shift and go to state 80
+    BOOLEAN         shift and go to state 81
+    ARRAY           shift and go to state 83
+
+    type                           shift and go to state 203
+    array_type                     shift and go to state 82
+
+state 194
+
+    (85) param_list -> param_list PONTO_VIRGULA param .
+
+    PONTO_VIRGULA   reduce using rule 85 (param_list -> param_list PONTO_VIRGULA param .)
+    )               reduce using rule 85 (param_list -> param_list PONTO_VIRGULA param .)
+
+
+state 195
+
+    (86) param -> id_list DOISPONTOS type .
+
+    PONTO_VIRGULA   reduce using rule 86 (param -> id_list DOISPONTOS type .)
+    )               reduce using rule 86 (param -> id_list DOISPONTOS type .)
+
+
+state 196
+
+    (80) procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA . var_declaration_part BEGIN body END PONTO_VIRGULA
+    (2) var_declaration_part -> . VAR var_declaration_list
+    (3) var_declaration_part -> . empty
+    (100) empty -> .
+
+    VAR             shift and go to state 6
+    BEGIN           reduce using rule 100 (empty -> .)
+
+    var_declaration_part           shift and go to state 204
+    empty                          shift and go to state 7
+
+state 197
+
+    (96) array_type -> ARRAY [ NUM DOUBLEPOINTS NUM . ] OF type
+
+    ]               shift and go to state 205
+
+
+state 198
+
+    (97) array_type -> ARRAY [ NUM ] OF . type
+    (91) type -> . INTEGER
+    (92) type -> . REAL
+    (93) type -> . STRING_TYPE
+    (94) type -> . BOOLEAN
+    (95) type -> . array_type
+    (96) array_type -> . ARRAY [ NUM DOUBLEPOINTS NUM ] OF type
+    (97) array_type -> . ARRAY [ NUM ] OF type
+
+    INTEGER         shift and go to state 78
+    REAL            shift and go to state 79
+    STRING_TYPE     shift and go to state 80
+    BOOLEAN         shift and go to state 81
+    ARRAY           shift and go to state 83
+
+    type                           shift and go to state 206
+    array_type                     shift and go to state 82
+
+state 199
+
+    (39) case -> CASE expression OF case_branches ELSE statements END . PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 207
+
+
+state 200
+
+    (76) while -> WHILE ( expression ) DO compound_statement PONTO_VIRGULA .
+
+    WRITELN         reduce using rule 76 (while -> WHILE ( expression ) DO compound_statement PONTO_VIRGULA .)
+    WRITE           reduce using rule 76 (while -> WHILE ( expression ) DO compound_statement PONTO_VIRGULA .)
+    READLN          reduce using rule 76 (while -> WHILE ( expression ) DO compound_statement PONTO_VIRGULA .)
+    READ            reduce using rule 76 (while -> WHILE ( expression ) DO compound_statement PONTO_VIRGULA .)
+    IF              reduce using rule 76 (while -> WHILE ( expression ) DO compound_statement PONTO_VIRGULA .)
+    CASE            reduce using rule 76 (while -> WHILE ( expression ) DO compound_statement PONTO_VIRGULA .)
+    WHILE           reduce using rule 76 (while -> WHILE ( expression ) DO compound_statement PONTO_VIRGULA .)
+    FOR             reduce using rule 76 (while -> WHILE ( expression ) DO compound_statement PONTO_VIRGULA .)
+    FUNCTION        reduce using rule 76 (while -> WHILE ( expression ) DO compound_statement PONTO_VIRGULA .)
+    PROCEDURE       reduce using rule 76 (while -> WHILE ( expression ) DO compound_statement PONTO_VIRGULA .)
+    ID              reduce using rule 76 (while -> WHILE ( expression ) DO compound_statement PONTO_VIRGULA .)
+    BUILTIN_FUNC    reduce using rule 76 (while -> WHILE ( expression ) DO compound_statement PONTO_VIRGULA .)
+    END             reduce using rule 76 (while -> WHILE ( expression ) DO compound_statement PONTO_VIRGULA .)
+    ELSE            reduce using rule 76 (while -> WHILE ( expression ) DO compound_statement PONTO_VIRGULA .)
+    STRING          reduce using rule 76 (while -> WHILE ( expression ) DO compound_statement PONTO_VIRGULA .)
+    NUM             reduce using rule 76 (while -> WHILE ( expression ) DO compound_statement PONTO_VIRGULA .)
+
+
+state 201
+
+    (77) for -> FOR ID ASSIGN expression TO expression DO . compound_statement PONTO_VIRGULA
+    (79) compound_statement -> . BEGIN statements END
+
+    BEGIN           shift and go to state 138
+
+    compound_statement             shift and go to state 208
+
+state 202
+
+    (78) for -> FOR ID ASSIGN expression DOWNTO expression DO . compound_statement PONTO_VIRGULA
+    (79) compound_statement -> . BEGIN statements END
+
+    BEGIN           shift and go to state 138
+
+    compound_statement             shift and go to state 209
+
+state 203
+
+    (81) function -> FUNCTION ID ( params ) DOISPONTOS type . PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 210
+
+
+state 204
+
+    (80) procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part . BEGIN body END PONTO_VIRGULA
+
+    BEGIN           shift and go to state 211
+
+
+state 205
+
+    (96) array_type -> ARRAY [ NUM DOUBLEPOINTS NUM ] . OF type
+
+    OF              shift and go to state 212
+
+
+state 206
+
+    (97) array_type -> ARRAY [ NUM ] OF type .
+
+    PONTO_VIRGULA   reduce using rule 97 (array_type -> ARRAY [ NUM ] OF type .)
+    )               reduce using rule 97 (array_type -> ARRAY [ NUM ] OF type .)
+
+
+state 207
+
+    (39) case -> CASE expression OF case_branches ELSE statements END PONTO_VIRGULA .
+
+    WRITELN         reduce using rule 39 (case -> CASE expression OF case_branches ELSE statements END PONTO_VIRGULA .)
+    WRITE           reduce using rule 39 (case -> CASE expression OF case_branches ELSE statements END PONTO_VIRGULA .)
+    READLN          reduce using rule 39 (case -> CASE expression OF case_branches ELSE statements END PONTO_VIRGULA .)
+    READ            reduce using rule 39 (case -> CASE expression OF case_branches ELSE statements END PONTO_VIRGULA .)
+    IF              reduce using rule 39 (case -> CASE expression OF case_branches ELSE statements END PONTO_VIRGULA .)
+    CASE            reduce using rule 39 (case -> CASE expression OF case_branches ELSE statements END PONTO_VIRGULA .)
+    WHILE           reduce using rule 39 (case -> CASE expression OF case_branches ELSE statements END PONTO_VIRGULA .)
+    FOR             reduce using rule 39 (case -> CASE expression OF case_branches ELSE statements END PONTO_VIRGULA .)
+    FUNCTION        reduce using rule 39 (case -> CASE expression OF case_branches ELSE statements END PONTO_VIRGULA .)
+    PROCEDURE       reduce using rule 39 (case -> CASE expression OF case_branches ELSE statements END PONTO_VIRGULA .)
+    ID              reduce using rule 39 (case -> CASE expression OF case_branches ELSE statements END PONTO_VIRGULA .)
+    BUILTIN_FUNC    reduce using rule 39 (case -> CASE expression OF case_branches ELSE statements END PONTO_VIRGULA .)
+    END             reduce using rule 39 (case -> CASE expression OF case_branches ELSE statements END PONTO_VIRGULA .)
+    ELSE            reduce using rule 39 (case -> CASE expression OF case_branches ELSE statements END PONTO_VIRGULA .)
+    STRING          reduce using rule 39 (case -> CASE expression OF case_branches ELSE statements END PONTO_VIRGULA .)
+    NUM             reduce using rule 39 (case -> CASE expression OF case_branches ELSE statements END PONTO_VIRGULA .)
+
+
+state 208
+
+    (77) for -> FOR ID ASSIGN expression TO expression DO compound_statement . PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 213
+
+
+state 209
+
+    (78) for -> FOR ID ASSIGN expression DOWNTO expression DO compound_statement . PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 214
+
+
+state 210
+
+    (81) function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA . var_declaration_part BEGIN body END PONTO_VIRGULA
+    (2) var_declaration_part -> . VAR var_declaration_list
+    (3) var_declaration_part -> . empty
+    (100) empty -> .
+
+    VAR             shift and go to state 6
+    BEGIN           reduce using rule 100 (empty -> .)
+
+    var_declaration_part           shift and go to state 215
+    empty                          shift and go to state 7
+
+state 211
+
+    (80) procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN . body END PONTO_VIRGULA
+    (10) body -> . statements
+    (11) statements -> . statements statement
+    (12) statements -> . statement
+    (13) statement -> . assign
+    (14) statement -> . writeln
+    (15) statement -> . write
+    (16) statement -> . readln
+    (17) statement -> . read
+    (18) statement -> . if
+    (19) statement -> . case
+    (20) statement -> . while
+    (21) statement -> . for
+    (22) statement -> . function
+    (23) statement -> . procedure
+    (24) statement -> . func_call
+    (33) assign -> . var ASSIGN expression PONTO_VIRGULA
+    (25) writeln -> . WRITELN ( Args ) PONTO_VIRGULA
+    (26) write -> . WRITE ( Args ) PONTO_VIRGULA
+    (27) readln -> . READLN ( Args ) PONTO_VIRGULA
+    (28) read -> . READ ( Args ) PONTO_VIRGULA
+    (34) if -> . IF expression THEN statement
+    (35) if -> . IF expression THEN statement ELSE statement
+    (36) if -> . IF expression THEN compound_statement
+    (37) if -> . IF expression THEN compound_statement ELSE compound_statement
+    (38) case -> . CASE expression OF case_branches END PONTO_VIRGULA
+    (39) case -> . CASE expression OF case_branches ELSE statements END PONTO_VIRGULA
+    (75) while -> . WHILE expression DO compound_statement PONTO_VIRGULA
+    (76) while -> . WHILE ( expression ) DO compound_statement PONTO_VIRGULA
+    (77) for -> . FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA
+    (78) for -> . FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA
+    (81) function -> . FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (80) procedure -> . PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+
+    WRITELN         shift and go to state 30
+    WRITE           shift and go to state 31
+    READLN          shift and go to state 32
+    READ            shift and go to state 33
+    IF              shift and go to state 34
+    CASE            shift and go to state 35
+    WHILE           shift and go to state 36
+    FOR             shift and go to state 37
+    FUNCTION        shift and go to state 38
+    PROCEDURE       shift and go to state 39
+    ID              shift and go to state 13
+    BUILTIN_FUNC    shift and go to state 40
+
+    body                           shift and go to state 216
+    statements                     shift and go to state 15
+    statement                      shift and go to state 16
+    assign                         shift and go to state 17
+    writeln                        shift and go to state 18
+    write                          shift and go to state 19
+    readln                         shift and go to state 20
+    read                           shift and go to state 21
+    if                             shift and go to state 22
+    case                           shift and go to state 23
+    while                          shift and go to state 24
+    for                            shift and go to state 25
+    function                       shift and go to state 26
+    procedure                      shift and go to state 27
+    func_call                      shift and go to state 28
+    var                            shift and go to state 29
+
+state 212
+
+    (96) array_type -> ARRAY [ NUM DOUBLEPOINTS NUM ] OF . type
+    (91) type -> . INTEGER
+    (92) type -> . REAL
+    (93) type -> . STRING_TYPE
+    (94) type -> . BOOLEAN
+    (95) type -> . array_type
+    (96) array_type -> . ARRAY [ NUM DOUBLEPOINTS NUM ] OF type
+    (97) array_type -> . ARRAY [ NUM ] OF type
+
+    INTEGER         shift and go to state 78
+    REAL            shift and go to state 79
+    STRING_TYPE     shift and go to state 80
+    BOOLEAN         shift and go to state 81
+    ARRAY           shift and go to state 83
+
+    type                           shift and go to state 217
+    array_type                     shift and go to state 82
+
+state 213
+
+    (77) for -> FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA .
+
+    WRITELN         reduce using rule 77 (for -> FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA .)
+    WRITE           reduce using rule 77 (for -> FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA .)
+    READLN          reduce using rule 77 (for -> FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA .)
+    READ            reduce using rule 77 (for -> FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA .)
+    IF              reduce using rule 77 (for -> FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA .)
+    CASE            reduce using rule 77 (for -> FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA .)
+    WHILE           reduce using rule 77 (for -> FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA .)
+    FOR             reduce using rule 77 (for -> FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA .)
+    FUNCTION        reduce using rule 77 (for -> FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA .)
+    PROCEDURE       reduce using rule 77 (for -> FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA .)
+    ID              reduce using rule 77 (for -> FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA .)
+    BUILTIN_FUNC    reduce using rule 77 (for -> FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA .)
+    END             reduce using rule 77 (for -> FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA .)
+    ELSE            reduce using rule 77 (for -> FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA .)
+    STRING          reduce using rule 77 (for -> FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA .)
+    NUM             reduce using rule 77 (for -> FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA .)
+
+
+state 214
+
+    (78) for -> FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA .
+
+    WRITELN         reduce using rule 78 (for -> FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA .)
+    WRITE           reduce using rule 78 (for -> FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA .)
+    READLN          reduce using rule 78 (for -> FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA .)
+    READ            reduce using rule 78 (for -> FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA .)
+    IF              reduce using rule 78 (for -> FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA .)
+    CASE            reduce using rule 78 (for -> FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA .)
+    WHILE           reduce using rule 78 (for -> FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA .)
+    FOR             reduce using rule 78 (for -> FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA .)
+    FUNCTION        reduce using rule 78 (for -> FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA .)
+    PROCEDURE       reduce using rule 78 (for -> FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA .)
+    ID              reduce using rule 78 (for -> FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA .)
+    BUILTIN_FUNC    reduce using rule 78 (for -> FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA .)
+    END             reduce using rule 78 (for -> FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA .)
+    ELSE            reduce using rule 78 (for -> FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA .)
+    STRING          reduce using rule 78 (for -> FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA .)
+    NUM             reduce using rule 78 (for -> FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA .)
+
+
+state 215
+
+    (81) function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part . BEGIN body END PONTO_VIRGULA
+
+    BEGIN           shift and go to state 218
+
+
+state 216
+
+    (80) procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body . END PONTO_VIRGULA
+
+    END             shift and go to state 219
+
+
+state 217
+
+    (96) array_type -> ARRAY [ NUM DOUBLEPOINTS NUM ] OF type .
+
+    PONTO_VIRGULA   reduce using rule 96 (array_type -> ARRAY [ NUM DOUBLEPOINTS NUM ] OF type .)
+    )               reduce using rule 96 (array_type -> ARRAY [ NUM DOUBLEPOINTS NUM ] OF type .)
+
+
+state 218
+
+    (81) function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN . body END PONTO_VIRGULA
+    (10) body -> . statements
+    (11) statements -> . statements statement
+    (12) statements -> . statement
+    (13) statement -> . assign
+    (14) statement -> . writeln
+    (15) statement -> . write
+    (16) statement -> . readln
+    (17) statement -> . read
+    (18) statement -> . if
+    (19) statement -> . case
+    (20) statement -> . while
+    (21) statement -> . for
+    (22) statement -> . function
+    (23) statement -> . procedure
+    (24) statement -> . func_call
+    (33) assign -> . var ASSIGN expression PONTO_VIRGULA
+    (25) writeln -> . WRITELN ( Args ) PONTO_VIRGULA
+    (26) write -> . WRITE ( Args ) PONTO_VIRGULA
+    (27) readln -> . READLN ( Args ) PONTO_VIRGULA
+    (28) read -> . READ ( Args ) PONTO_VIRGULA
+    (34) if -> . IF expression THEN statement
+    (35) if -> . IF expression THEN statement ELSE statement
+    (36) if -> . IF expression THEN compound_statement
+    (37) if -> . IF expression THEN compound_statement ELSE compound_statement
+    (38) case -> . CASE expression OF case_branches END PONTO_VIRGULA
+    (39) case -> . CASE expression OF case_branches ELSE statements END PONTO_VIRGULA
+    (75) while -> . WHILE expression DO compound_statement PONTO_VIRGULA
+    (76) while -> . WHILE ( expression ) DO compound_statement PONTO_VIRGULA
+    (77) for -> . FOR ID ASSIGN expression TO expression DO compound_statement PONTO_VIRGULA
+    (78) for -> . FOR ID ASSIGN expression DOWNTO expression DO compound_statement PONTO_VIRGULA
+    (81) function -> . FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (80) procedure -> . PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA
+    (98) func_call -> . ID ( Args )
+    (99) func_call -> . BUILTIN_FUNC ( Args )
+    (89) var -> . ID
+    (90) var -> . ID [ expression ]
+
+    WRITELN         shift and go to state 30
+    WRITE           shift and go to state 31
+    READLN          shift and go to state 32
+    READ            shift and go to state 33
+    IF              shift and go to state 34
+    CASE            shift and go to state 35
+    WHILE           shift and go to state 36
+    FOR             shift and go to state 37
+    FUNCTION        shift and go to state 38
+    PROCEDURE       shift and go to state 39
+    ID              shift and go to state 13
+    BUILTIN_FUNC    shift and go to state 40
+
+    body                           shift and go to state 220
+    statements                     shift and go to state 15
+    statement                      shift and go to state 16
+    assign                         shift and go to state 17
+    writeln                        shift and go to state 18
+    write                          shift and go to state 19
+    readln                         shift and go to state 20
+    read                           shift and go to state 21
+    if                             shift and go to state 22
+    case                           shift and go to state 23
+    while                          shift and go to state 24
+    for                            shift and go to state 25
+    function                       shift and go to state 26
+    procedure                      shift and go to state 27
+    func_call                      shift and go to state 28
+    var                            shift and go to state 29
+
+state 219
+
+    (80) procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END . PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 221
+
+
+state 220
+
+    (81) function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body . END PONTO_VIRGULA
+
+    END             shift and go to state 222
+
+
+state 221
+
+    (80) procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .
+
+    WRITELN         reduce using rule 80 (procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    WRITE           reduce using rule 80 (procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    READLN          reduce using rule 80 (procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    READ            reduce using rule 80 (procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    IF              reduce using rule 80 (procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    CASE            reduce using rule 80 (procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    WHILE           reduce using rule 80 (procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    FOR             reduce using rule 80 (procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    FUNCTION        reduce using rule 80 (procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    PROCEDURE       reduce using rule 80 (procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    ID              reduce using rule 80 (procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    BUILTIN_FUNC    reduce using rule 80 (procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    END             reduce using rule 80 (procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    ELSE            reduce using rule 80 (procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    STRING          reduce using rule 80 (procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    NUM             reduce using rule 80 (procedure -> PROCEDURE ID ( params ) PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+
+
+state 222
+
+    (81) function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END . PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 223
+
+
+state 223
+
+    (81) function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .
+
+    WRITELN         reduce using rule 81 (function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    WRITE           reduce using rule 81 (function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    READLN          reduce using rule 81 (function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    READ            reduce using rule 81 (function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    IF              reduce using rule 81 (function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    CASE            reduce using rule 81 (function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    WHILE           reduce using rule 81 (function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    FOR             reduce using rule 81 (function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    FUNCTION        reduce using rule 81 (function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    PROCEDURE       reduce using rule 81 (function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    ID              reduce using rule 81 (function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    BUILTIN_FUNC    reduce using rule 81 (function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    END             reduce using rule 81 (function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    ELSE            reduce using rule 81 (function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    STRING          reduce using rule 81 (function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+    NUM             reduce using rule 81 (function -> FUNCTION ID ( params ) DOISPONTOS type PONTO_VIRGULA var_declaration_part BEGIN body END PONTO_VIRGULA .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for OR in state 59 resolved as shift
+WARNING: shift/reduce conflict for AND in state 60 resolved as shift
+WARNING: shift/reduce conflict for ELSE in state 136 resolved as shift
+WARNING: shift/reduce conflict for ELSE in state 137 resolved as shift
+WARNING: shift/reduce conflict for OR in state 141 resolved as shift
+WARNING: shift/reduce conflict for AND in state 142 resolved as shift
+WARNING: shift/reduce conflict for DO in state 150 resolved as shift
